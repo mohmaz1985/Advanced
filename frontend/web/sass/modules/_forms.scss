@@ -1,0 +1,19 @@
+/* Forms */
+
+/* Profile Form Modal */
+.profile-form{
+	background-color:$profile-modal-form-bg-color;
+	color:$profile-modal-form-font-color;
+}
+.profile-form .modal-header{
+	@include add-border($profile-modal-form-border-size,$profile-modal-form-border-type,$profile-modal-form-border-color,bottom);
+}
+.profile-form .modal-footer{
+	@include add-border($profile-modal-form-border-size,$profile-modal-form-border-type,$profile-modal-form-border-color,top);
+}
+.profile-form .btn-primary{
+	background-color:$profile-modal-btn-primary-bg-color;
+	border:0;
+
+}
+/* End Profile Form Modal */

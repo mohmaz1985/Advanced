@@ -1,0 +1,24 @@
+/* Base */
+body{
+	font-family:$base-font-family;
+	font-size:$base-font-size;
+	color:$base-font-color;
+	line-height:$base-font-line-height;
+}
+/* Container Fluid */
+.container-fluid {
+    padding: 0 !important;
+	margin: 0 !important;
+ }
+ /* row */
+.row{
+	padding: 0 !important;
+	margin: 0 !important;
+}
+/* Modal */
+.close-modal{
+	font-size:30px;
+	color:red;
+	cursor:pointer;
+}
+

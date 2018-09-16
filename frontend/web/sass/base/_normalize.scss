@@ -1,0 +1,36 @@
+/* Normalize */
+.show-text{
+	display:inline !important;
+}
+/* cloak load resources*/
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+    background-color:$loading-bg-color;
+    /* The image used */
+    background-image: url($loading-img-src);
+
+    /* Center and scale the image nicely */
+    background-attachment:fixed;
+    background-position:center;
+    background-repeat: no-repeat;
+ }
+/**/
+.loader {
+  z-index:10000;
+  min-width: 100%;
+  min-height: 200%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color:$loading-bg-color;
+  /* The image used */
+  background-image: url($loading-img-src);
+
+  /* Center and scale the image nicely */
+	background-attachment:fixed;
+	background-position:center;
+	background-repeat: no-repeat;
+
+}

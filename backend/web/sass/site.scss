@@ -1,0 +1,29 @@
+/*
+	Admin Panel Sass Theme
+	Author: Mohammad Alsayyed
+	Version: 0.0.1 
+*/
+
+/* Base - Base styles, variables, mixins, etc */
+@import 'base/_fonts.scss';
+@import 'base/_variables.scss';
+@import 'base/_mixins.scss';
+@import 'base/_normalize.scss';
+@import 'base/_base.scss';
+
+
+
+/*layout - layout blog, footer, header, etc */
+@import 'layouts/_header.scss';
+@import 'layouts/_footer.scss';
+@import 'layouts/_nav.scss';
+@import 'layouts/_mobile.scss';
+@import 'layouts/_blog.scss';
+
+/* Modules - modules blocks, buttons, forms, etc */
+@import 'modules/_blocks.scss';
+@import 'modules/_buttons.scss';
+@import 'modules/_components.scss';
+@import 'modules/_forms.scss';
+@import 'modules/_sections.scss';
+@import 'modules/_typography.scss';

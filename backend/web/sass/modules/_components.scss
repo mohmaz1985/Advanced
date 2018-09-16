@@ -1,0 +1,69 @@
+/* Components */
+/* Date And Time */
+.date-time {
+	background-color:$date-time-background-color;
+	color:$date-time-font-color;
+	font-size:35px;
+	font-family: 'DSDIGI' !important;
+	@include add-border($date-time-border-size,$date-time-border-type,$date-time-border-color,$date-time-border-position);
+}
+/*styles for world map: START*/
+#map {
+    background: skyblue;
+    text-align:center;
+}
+#float-button-group {
+    position: absolute;
+    top:30px;
+    left:30px;
+    opacity:0.5;
+}
+
+#float-button-group:hover {
+    opacity:1;
+}
+ #map-zoomer {
+    position:relative;
+    writing-mode: bt-lr;
+    -webkit-appearance: slider-vertical;
+    width: 8px;
+    height: 100px;
+    padding: 0 5px;
+    position: absolute;
+    top:150px;
+    left:45px;
+}
+.worldMapMycountry:hover {
+	stroke:#fff;
+	fill: #009688 !important;;
+	fill-opacity:1;
+	stroke-width:0.1px;
+}
+/*styles for world map: END*/
+
+/* Loading */
+.loading{
+	padding-top:50px;
+	font-size:30px;
+	text-align:center;
+}
+.fa-spinner{
+   -webkit-animation: spin 2s linear infinite; /* Safari */
+   animation: spin 2s linear infinite;
+}
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+svg {
+    width:100%;
+    height: 300px;
+}
+/* End Loading */

@@ -1,0 +1,72 @@
+/* Mixins - Copyright © Mohammad Alsayyed */
+
+/* Border Radius: radius */
+@mixin border-radius($radius){
+	-moz-border-radius:$radius;
+	-webkit-border-radius:$radius;
+	border-radius:$radius;
+}
+
+/* Add border: size,type,color and position */
+@mixin add-border($size,$type,$color,$position){
+	@if $position == 'all'{
+		border:$size $type $color;
+	} @else if $position == 'top'{
+		border-top:$size $type $color;
+	} @else if $position == 'bottom'{
+		border-bottom:$size $type $color;
+	} @else if $position == 'left'{
+		border-left:$size $type $color;
+	} @else if $position == 'right'{
+		border-right:$size $type $color;
+	} @else if $position == 'top-bottom'{
+		border-top:$size $type $color;
+		border-bottom:$size $type $color;
+	} @else if $position == 'top-left'{
+		border-top:$size $type $color;
+		border-left:$size $type $color;
+	} @else if $position == 'top-right'{
+		border-top:$size $type $color;
+		border-right:$size $type $color;
+	}@else if $position == 'bottom-left'{
+		border-bottom:$size $type $color;
+		border-left:$size $type $color;
+	} @else if $position == 'bottom-right'{
+		border-bottom:$size $type $color;
+		border-right:$size $type $color;
+	} @else if $position == 'left-right'{
+		border-left:$size $type $color;
+		border-right:$size $type $color;
+	} @else if $position == 'left-right-bottom'{
+		border-left:$size $type $color;
+		border-right:$size $type $color;
+		border-bottom:$size $type $color;
+	} @else if $position == 'left-right-top'{
+		border-left:$size $type $color;
+		border-right:$size $type $color;
+		border-top:$size $type $color;
+	}@else if $position == 'left-top-bottom'{
+		border-left:$size $type $color;
+		border-top:$size $type $color;
+		border-bottom:$size $type $color;
+	}
+	@else if $position == 'right-top-bottom'{
+		border-right:$size $type $color;
+		border-top:$size $type $color;
+		border-bottom:$size $type $color;
+	}
+}
+/* Box Shadow: none,h-offset, v-offset, blur, spread, inset and color */
+@mixin shadow($h-offset,$v-offset,$blur,$spread,$color,$inset){
+	
+  	@if($inset == 'none'){
+		-moz-box-shadow: $h-offset $v-offset $blur $spread $color;
+		-webkit-box-shadow: $h-offset $v-offset $blur $spread $color;
+		box-shadow: $h-offset $v-offset $blur $spread $color;
+	}@else{
+		-moz-box-shadow: $h-offset $v-offset $blur $spread $color $inset;
+		-webkit-box-shadow: $h-offset $v-offset $blur $spread $color $inset;
+		box-shadow: $h-offset $v-offset $blur $spread $color $inset;
+	}
+	
+}
