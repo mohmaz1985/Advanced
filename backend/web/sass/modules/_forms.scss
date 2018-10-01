@@ -31,3 +31,31 @@
 		text-align:center;
 	}
 }
+
+/* Pop Up Form Modal */
+.pop-up-form .modal-content{
+	background-color:$profile-modal-form-bg-color;
+	color:$profile-modal-form-font-color;
+	border:0px;
+	& .btn-success{
+		background-color:$form-modal-btn-success-bg-color;
+		border:0;
+		float:right;
+	}
+
+}
+.pop-up-form .modal-header{
+	@include add-border($form-modal-form-border-size,$form-modal-form-border-type,$form-modal-form-border-color,bottom);
+	display: block!important;
+	& .modal-title
+	{
+		float: left;
+	}
+	& .close
+	{
+		font-size:35px;
+		color:red;
+		opacity:1;
+		cursor:pointer;
+	}
+}

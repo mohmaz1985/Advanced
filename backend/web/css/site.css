@@ -25,6 +25,7 @@
 /* Loading ..*/
 /* Login Form */
 /* Form error font color */
+/* Pop Up Form */
 /* Mixins - Copyright © Mohammad Alsayyed */
 /* Border Radius: radius */
 /* Add border: size,type,color and position */
@@ -440,6 +441,35 @@ svg {
   background-color: #009688;
   color: #ffffff;
   text-align: center;
+}
+
+/* Pop Up Form Modal */
+.pop-up-form .modal-content {
+  background-color: #222d32;
+  color: #ffffff;
+  border: 0px;
+}
+
+.pop-up-form .modal-content .btn-success {
+  background-color: #009688;
+  border: 0;
+  float: right;
+}
+
+.pop-up-form .modal-header {
+  border-bottom: 2px solid #009688;
+  display: block !important;
+}
+
+.pop-up-form .modal-header .modal-title {
+  float: left;
+}
+
+.pop-up-form .modal-header .close {
+  font-size: 35px;
+  color: red;
+  opacity: 1;
+  cursor: pointer;
 }
 
 /* Section */

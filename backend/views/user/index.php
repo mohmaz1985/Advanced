@@ -2,7 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-
+use yii\bootstrap\Modal;
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -10,14 +11,35 @@ use yii\grid\GridView;
 $this->title = 'Users';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-index">
+<div class="user-index pop-up-form">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
+    <p >
+        <?= Html::button('Create User',[
+         'value' => Url::to(['/user/create']),
+         'class' => 'btn btn-success',
+         'id' => 'modalButton'
+     	]) ?>
     </p>
+    <?php
+
+	    Modal::begin([
+	    'headerOptions'=>[
+	    	'class'=>'modal-header',
+	    ],
+	    'header' => '<h2 class="modal-title">Create User</h2>',
+	    'id' => 'modal',
+	    'size' => 'modal-lg',
+	    
+		]);
+
+		echo "<div class='modal-content' id='modalContant'></div>";
+
+		Modal::end();
+
+    ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,

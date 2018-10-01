@@ -10,7 +10,7 @@ use yii\grid\GridView;
 $this->title = 'Branches';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="branch-index">
+<div class="branch-index" >
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
