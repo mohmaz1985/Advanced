@@ -1,4 +1,4 @@
-$(function(){
+jQuery(function(){
 
 	$('#modalButton').click(function(){
 		$('#modal').modal('show')

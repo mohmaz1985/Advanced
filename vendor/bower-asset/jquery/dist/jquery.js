@@ -9842,14 +9842,13 @@ jQuery.fn.load = function( url, params, callback ) {
 	// If we have elements to modify, make the request
 	if ( self.length > 0 ) {
 		jQuery.ajax( {
-			url: url,
-
+			url: url, 
 			// If "type" variable is undefined, then "GET" method will be used.
 			// Make value of this field explicit since
 			// user can override it through ajaxSetup method
 			type: type || "GET",
 			dataType: "html",
-			data: params
+			data: params,
 		} ).done( function( responseText ) {
 
 			// Save response for use in complete callback

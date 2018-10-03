@@ -27,7 +27,7 @@ use yii\helpers\ArrayHelper;
  * Modal::end();
  * ~~~
  *
- * @see http://getbootstrap.com/javascript/#modals
+ 
  * @author Antonio Ramirez <amigo.cobos@gmail.com>
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0

@@ -23,6 +23,7 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    
 </head>
 <body ng-app="app" ng-controller="sidebarCtrl" ng-cloak window-size>
 <?php $this->beginBody() ?>

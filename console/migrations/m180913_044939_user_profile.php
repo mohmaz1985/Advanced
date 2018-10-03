@@ -26,9 +26,7 @@ class m180913_044939_user_profile extends Migration
             'user_image' => $this->string(255),
             'country' => $this->string(2)->notNull(),
             'city' => $this->string(2)->notNull(),
-            'zip' => $this->string(2)->notNull(),
-            'status' => $this->smallInteger()->notNull()->defaultValue(10),
-            'updated_at' => $this->integer()->notNull(),
+            'zip' => $this->string(6)->notNull(),
         ], $tableOptions);
 
         // add foreign key for table `user`
@@ -51,17 +49,24 @@ class m180913_044939_user_profile extends Migration
             'user_id',
             'full_name_ar',
             'full_name_en',
-            'updated_at',],
+            'country',
+            'city',
+            'zip',
+            ],
             [
                 [1,
                 'محمد السيد',
                 'Mohammad Alsayyed',
-                time(),
+                'JO',
+                'Am',
+                '+962',
                 ],
                 [2,
                 'تجربة',
                 'Demo Demo',
-                time(),
+                'US',
+                'Wa',
+                '+20066',
                 ]
             ]);
 

@@ -5,11 +5,13 @@ namespace backend\controllers;
 use Yii;
 use backend\models\User;
 use backend\models\UserSearch;
+use backend\models\UserProfile;
 use yii\web\Controller;
 use \yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\widgets\ActiveForm;
+use yii\web\Response;
 /**
  * UserController implements the CRUD actions for User model.
  */
@@ -75,12 +77,26 @@ class UserController extends Controller
     public function actionCreate()
     {
         $model = new User();
+        $userProfile = new UserProfile();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $userProfile->load(Yii::$app->request->post())) {
+
+            $model->save(false);
+            
+            // user profile save
+            $userProfile->user_id = $model->id;
+             $userProfile->save(false);
+
+           
             return $this->redirect(['view', 'id' => $model->id]);
+
+
+            
         } else {
+
             return $this->renderAjax('create', [
                 'model' => $model,
+                'userProfile' => $userProfile,
             ]);
         }
     }
@@ -94,16 +110,28 @@ class UserController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+ 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'userProfile' => $userProfile,
             ]);
         }
     }
 
+    // ajax validation
+    public function actionValidate()
+    {
+
+        $model = new User();
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+    }
+    
     /**
      * Deletes an existing User model.
      * If deletion is successful, the browser will be redirected to the 'index' page.

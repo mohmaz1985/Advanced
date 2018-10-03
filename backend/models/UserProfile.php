@@ -15,8 +15,6 @@ use Yii;
  * @property string $country
  * @property string $city
  * @property string $zip
- * @property integer $status
- * @property integer $updated_at
  *
  * @property User $user
  */
@@ -36,11 +34,12 @@ class UserProfile extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'full_name_ar', 'full_name_en', 'country', 'city', 'zip', 'updated_at'], 'required'],
-            [['user_id', 'status', 'updated_at'], 'integer'],
+            [['user_id', 'full_name_ar', 'full_name_en', 'country', 'city', 'zip'], 'required'],
+            [['user_id'], 'integer'],
             [['full_name_ar', 'full_name_en'], 'string', 'max' => 225],
             [['user_image'], 'string', 'max' => 255],
-            [['country', 'city', 'zip'], 'string', 'max' => 2],
+            [['country', 'city'], 'string', 'max' => 2],
+            [['zip'], 'string', 'max' => 6],
             [['full_name_ar'], 'unique'],
             [['full_name_en'], 'unique'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
@@ -61,8 +60,6 @@ class UserProfile extends \yii\db\ActiveRecord
             'country' => 'Country',
             'city' => 'City',
             'zip' => 'Zip',
-            'status' => 'Status',
-            'updated_at' => 'Updated At',
         ];
     }
 
