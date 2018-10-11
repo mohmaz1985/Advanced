@@ -12,6 +12,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\widgets\ActiveForm;
 use yii\web\Response;
+use \yii\db\Exception;
 /**
  * UserController implements the CRUD actions for User model.
  */
@@ -79,21 +80,44 @@ class UserController extends Controller
         $model = new User();
         $userProfile = new UserProfile();
 
+
         if ($model->load(Yii::$app->request->post()) && $userProfile->load(Yii::$app->request->post())) {
 
-            $model->save(false);
+        try {
+           $model->password_hash =Yii::$app->security->generatePasswordHash($model->password_hash);
+           $model->auth_key = Yii::$app->security->generateRandomString();
+           $model->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
+
+            $model->created_by= Yii::$app->user->id;
+            $model->created_at = time();
+
             
             // user profile save
-            $userProfile->user_id = $model->id;
-             $userProfile->save(false);
+            $max = $model->find()->max('id')+1;
+            $model->id = $max; 
+            $userProfile->user_id = $max;
+            //Save All Data
+            $model->save(false);
+            $userProfile->save(false);
 
-           
-            return $this->redirect(['view', 'id' => $model->id]);
+            Yii::$app->session->setFlash('success', "User is Successfully Inserted!");
+            return $this->redirect(['view', 'id' => $max]); 
 
-
-            
+            }catch (\yii\db\Exception $exception){
+                Yii::$app->session->setFlash('danger', "Failed To 
+        inserted User!");
+                return $this->redirect(['index']);
+            }catch (\yii\base\Exception $exception){
+                Yii::$app->session->setFlash('danger', "Failed To 
+        inserted User!");
+                return $this->redirect(['index']);
+            }catch (\Exception $exception){
+                Yii::$app->session->setFlash('danger', "Failed To 
+        inserted User!");
+                return $this->redirect(['index']);
+            }
+             
         } else {
-
             return $this->renderAjax('create', [
                 'model' => $model,
                 'userProfile' => $userProfile,
@@ -159,5 +183,10 @@ class UserController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    // show ZIP code
+    public function actionUserLocation($countryId){
+        echo Yii::$app->generalComp->countryList($countryId);
     }
 }

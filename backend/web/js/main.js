@@ -1,8 +1,15 @@
 jQuery(function(){
-
 	$('#modalButton').click(function(){
-		$('#modal').modal('show')
-		.find('#modalContant')
-		.load($(this).attr('value'));
+		
+		
+		var url = $(this).attr('value');
+		$('#modal').find('#modalContant')
+			.load(url);
+		$('#loadPage').show();
+		setTimeout(function(){
+			$('#modal').modal('show');
+			$('#loadPage').hide();
+		}, 500);
+
 	});
 });

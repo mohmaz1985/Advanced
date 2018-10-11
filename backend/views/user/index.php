@@ -11,9 +11,10 @@ use yii\helpers\Url;
 $this->title = 'Users';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-index pop-up-form">
-
+<div class="user-index pop-up-form" >
+    
     <h1><?= Html::encode($this->title) ?></h1>
+    
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p >
@@ -23,6 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
          'id' => 'modalButton'
      	]) ?>
     </p>
+    <div class="loader sticky-top" style="display: none" id="loadPage"></div>
     <?php
 
 	    Modal::begin([
@@ -31,11 +33,14 @@ $this->params['breadcrumbs'][] = $this->title;
 	    ],
 	    'header' => '<h2 class="modal-title">Create User</h2>',
 	    'id' => 'modal',
-	    'size' => 'modal-lg',
+	    'size' => 'modal-md',
 	    
 		]);
+        ?>
+        
 
-		echo "<div class='modal-content' id='modalContant'></div>";
+		<div class='modal-content' id='modalContant'></div>
+        <?php
 
 		Modal::end();
 

@@ -21,12 +21,14 @@ class m180913_044939_user_profile extends Migration
         $this->createTable('{{%user_profile}}', [
             'id' => $this->primaryKey(),
             'user_id'=>$this->integer()->notNull(),
-            'full_name_ar' => $this->string(225)->notNull()->unique(),
-            'full_name_en' => $this->string(225)->notNull()->unique(),
+            'full_name_ar' => $this->string(225)->notNull(),
+            'full_name_en' => $this->string(225)->notNull(),
             'user_image' => $this->string(255),
             'country' => $this->string(2)->notNull(),
-            'city' => $this->string(2)->notNull(),
+            'city' => $this->string(6)->notNull(),
             'zip' => $this->string(6)->notNull(),
+            'full_address' => $this->string(400)->notNull()
+
         ], $tableOptions);
 
         // add foreign key for table `user`
@@ -39,12 +41,6 @@ class m180913_044939_user_profile extends Migration
             'CASCADE'
         );
         
-        /*$this->insert('{{%user_profile}}', [
-            'user_id'=>1,
-            'full_name_ar'=>'محمد السيد',
-            'full_name_en'=>'Mohammad Alsayyed',
-            'updated_at' => time(),
-        ]);*/
         $this->batchInsert('user_profile', [
             'user_id',
             'full_name_ar',
@@ -52,6 +48,7 @@ class m180913_044939_user_profile extends Migration
             'country',
             'city',
             'zip',
+            'full_address',
             ],
             [
                 [1,
@@ -60,6 +57,7 @@ class m180913_044939_user_profile extends Migration
                 'JO',
                 'Am',
                 '+962',
+                'Amman Jordan - Tariq'
                 ],
                 [2,
                 'تجربة',
@@ -67,6 +65,7 @@ class m180913_044939_user_profile extends Migration
                 'US',
                 'Wa',
                 '+20066',
+                'Amman Jordan - Demo Location',
                 ]
             ]);
 
