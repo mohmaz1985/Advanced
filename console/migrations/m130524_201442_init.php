@@ -22,8 +22,8 @@ class m130524_201442_init extends Migration
             'status' => $this->smallInteger()->notNull()->defaultValue(10),
             'created_by' => $this->integer()->notNull(),
             'created_at' => $this->integer()->notNull(),
-            'updated_by' => $this->integer()->notNull(),
-            'updated_at' => $this->integer()->notNull(),
+            'updated_by' => $this->integer()->notNull()->defaultValue('0'),
+            'updated_at' => $this->integer()->notNull()->defaultValue('0'),
         ], $tableOptions);
         
        /* $this->insert('{{%user}}', [

@@ -57895,3 +57895,355 @@ $_SERVER = [
     'REQUEST_TIME_FLOAT' => 1539252560.039
     'REQUEST_TIME' => 1539252560
 ]
+2018-10-12 07:54:46 [::1][-][9jb66sj5ibt0nbuk3a0tt2tmid][error][yii\base\InvalidConfigException] yii\base\InvalidConfigException: The table does not exist: {{%user}} in /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/ActiveRecord.php:387
+Stack trace:
+#0 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/ActiveRecord.php(211): yii\db\ActiveRecord::getTableSchema()
+#1 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/ActiveRecord.php(190): yii\db\ActiveRecord::filterCondition(Array)
+#2 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/BaseActiveRecord.php(112): yii\db\ActiveRecord::findByCondition(Array)
+#3 /Applications/MAMP/htdocs/advanced/common/models/User.php(86): yii\db\BaseActiveRecord::findOne(Array)
+#4 /Applications/MAMP/htdocs/advanced/common/models/LoginForm.php(73): common\models\User::findByUsername('mohammad')
+#5 /Applications/MAMP/htdocs/advanced/common/models/LoginForm.php(44): common\models\LoginForm->getUser()
+#6 [internal function]: common\models\LoginForm->validatePassword('password', NULL, Object(yii\validators\InlineValidator))
+#7 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/validators/InlineValidator.php(72): call_user_func(Array, 'password', NULL, Object(yii\validators\InlineValidator))
+#8 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/validators/Validator.php(267): yii\validators\InlineValidator->validateAttribute(Object(common\models\LoginForm), 'password')
+#9 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/base/Model.php(367): yii\validators\Validator->validateAttributes(Object(common\models\LoginForm), Array)
+#10 /Applications/MAMP/htdocs/advanced/common/models/LoginForm.php(58): yii\base\Model->validate()
+#11 /Applications/MAMP/htdocs/advanced/backend/controllers/SiteController.php(78): common\models\LoginForm->login()
+#12 [internal function]: backend\controllers\SiteController->actionLogin()
+#13 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#14 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#15 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/base/Module.php(528): yii\base\Controller->runAction('login', Array)
+#16 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('site/login', Array)
+#17 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#18 /Applications/MAMP/htdocs/advanced/backend/web/index.php(17): yii\base\Application->run()
+#19 {main}
+2018-10-12 07:54:46 [::1][-][9jb66sj5ibt0nbuk3a0tt2tmid][info][application] $_GET = [
+    'r' => 'site/login'
+]
+
+$_POST = [
+    '_csrf-backend' => '8MLyPDDikkln-yUA0_26FkUwy-SItVFO8jDPbxv3zjuVuLhVfpvgcQuLU02apOVfAFm5tcDUKDvGcrhWULy7WQ=='
+    'LoginForm' => [
+        'username' => 'mohammad'
+        'password' => '123456'
+        'rememberMe' => '1'
+    ]
+    'login-button' => ''
+]
+
+$_FILES = []
+
+$_COOKIE = [
+    '_csrf-backend' => '529629cb447b313ceaea81776a4940a1fe2481d8386b921be327cb1e806a5d5ba:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"ezJiNyr8lpvMIY_IEirQHayu4Bw9KKub\";}'
+    'advanced-backend' => '9jb66sj5ibt0nbuk3a0tt2tmid'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/advanced/backend/web/'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'localhost:8888'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-us'
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded'
+    'HTTP_ORIGIN' => 'http://localhost:8888'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 Safari/605.1.15'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_REFERER' => 'http://localhost:8888/advanced/backend/web/index.php?r=site%2Flogin'
+    'CONTENT_LENGTH' => '240'
+    'HTTP_COOKIE' => '_csrf-backend=529629cb447b313ceaea81776a4940a1fe2481d8386b921be327cb1e806a5d5ba%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22ezJiNyr8lpvMIY_IEirQHayu4Bw9KKub%22%3B%7D; advanced-backend=9jb66sj5ibt0nbuk3a0tt2tmid'
+    'PATH' => '/usr/bin:/bin:/usr/sbin:/sbin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.2.34 (Unix) mod_wsgi/3.5 Python/2.7.13 PHP/7.2.7 mod_ssl/2.2.34 OpenSSL/1.0.2o DAV/2 mod_fastcgi/mod_fastcgi-SNAP-0910052141 mod_perl/2.0.9 Perl/v5.24.0'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '8888'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => '/Applications/MAMP/htdocs'
+    'SERVER_ADMIN' => 'you@example.com'
+    'SCRIPT_FILENAME' => '/Applications/MAMP/htdocs/advanced/backend/web/index.php'
+    'REMOTE_PORT' => '50063'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'r=site%2Flogin'
+    'REQUEST_URI' => '/advanced/backend/web/index.php?r=site%2Flogin'
+    'SCRIPT_NAME' => '/advanced/backend/web/index.php'
+    'PHP_SELF' => '/advanced/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1539330886.726
+    'REQUEST_TIME' => 1539330886
+    'argv' => [
+        0 => 'r=site%2Flogin'
+    ]
+    'argc' => 1
+]
+2018-10-12 07:57:39 [::1][-][9jb66sj5ibt0nbuk3a0tt2tmid][error][yii\base\InvalidConfigException] yii\base\InvalidConfigException: The table does not exist: {{%user}} in /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/ActiveRecord.php:387
+Stack trace:
+#0 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/ActiveRecord.php(211): yii\db\ActiveRecord::getTableSchema()
+#1 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/ActiveRecord.php(190): yii\db\ActiveRecord::filterCondition(Array)
+#2 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/BaseActiveRecord.php(112): yii\db\ActiveRecord::findByCondition(Array)
+#3 /Applications/MAMP/htdocs/advanced/common/models/User.php(86): yii\db\BaseActiveRecord::findOne(Array)
+#4 /Applications/MAMP/htdocs/advanced/common/models/LoginForm.php(73): common\models\User::findByUsername('mohammad')
+#5 /Applications/MAMP/htdocs/advanced/common/models/LoginForm.php(44): common\models\LoginForm->getUser()
+#6 [internal function]: common\models\LoginForm->validatePassword('password', NULL, Object(yii\validators\InlineValidator))
+#7 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/validators/InlineValidator.php(72): call_user_func(Array, 'password', NULL, Object(yii\validators\InlineValidator))
+#8 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/validators/Validator.php(267): yii\validators\InlineValidator->validateAttribute(Object(common\models\LoginForm), 'password')
+#9 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/base/Model.php(367): yii\validators\Validator->validateAttributes(Object(common\models\LoginForm), Array)
+#10 /Applications/MAMP/htdocs/advanced/common/models/LoginForm.php(58): yii\base\Model->validate()
+#11 /Applications/MAMP/htdocs/advanced/backend/controllers/SiteController.php(78): common\models\LoginForm->login()
+#12 [internal function]: backend\controllers\SiteController->actionLogin()
+#13 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#14 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#15 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/base/Module.php(528): yii\base\Controller->runAction('login', Array)
+#16 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('site/login', Array)
+#17 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#18 /Applications/MAMP/htdocs/advanced/backend/web/index.php(17): yii\base\Application->run()
+#19 {main}
+2018-10-12 07:57:39 [::1][-][9jb66sj5ibt0nbuk3a0tt2tmid][info][application] $_GET = [
+    'r' => 'site/login'
+]
+
+$_POST = [
+    '_csrf-backend' => 'hVRStFmydkVobgPJvGYMz-LIYdXKESnHwO2Lo5oGGZ7gLhjdF8sEfQQedYT1P1OGp6EThIJwULL0r_ya0U1s_A=='
+    'LoginForm' => [
+        'username' => 'mohammad'
+        'password' => '123456'
+        'rememberMe' => '1'
+    ]
+    'login-button' => ''
+]
+
+$_FILES = []
+
+$_COOKIE = [
+    '_csrf-backend' => '529629cb447b313ceaea81776a4940a1fe2481d8386b921be327cb1e806a5d5ba:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"ezJiNyr8lpvMIY_IEirQHayu4Bw9KKub\";}'
+    'advanced-backend' => '9jb66sj5ibt0nbuk3a0tt2tmid'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/advanced/backend/web/'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'localhost:8888'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-us'
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded'
+    'HTTP_ORIGIN' => 'http://localhost:8888'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 Safari/605.1.15'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_REFERER' => 'http://localhost:8888/advanced/backend/web/index.php?r=site%2Flogin'
+    'CONTENT_LENGTH' => '240'
+    'HTTP_COOKIE' => '_csrf-backend=529629cb447b313ceaea81776a4940a1fe2481d8386b921be327cb1e806a5d5ba%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22ezJiNyr8lpvMIY_IEirQHayu4Bw9KKub%22%3B%7D; advanced-backend=9jb66sj5ibt0nbuk3a0tt2tmid'
+    'PATH' => '/usr/bin:/bin:/usr/sbin:/sbin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.2.34 (Unix) mod_wsgi/3.5 Python/2.7.13 PHP/7.2.7 mod_ssl/2.2.34 OpenSSL/1.0.2o DAV/2 mod_fastcgi/mod_fastcgi-SNAP-0910052141 mod_perl/2.0.9 Perl/v5.24.0'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '8888'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => '/Applications/MAMP/htdocs'
+    'SERVER_ADMIN' => 'you@example.com'
+    'SCRIPT_FILENAME' => '/Applications/MAMP/htdocs/advanced/backend/web/index.php'
+    'REMOTE_PORT' => '50080'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'r=site%2Flogin'
+    'REQUEST_URI' => '/advanced/backend/web/index.php?r=site%2Flogin'
+    'SCRIPT_NAME' => '/advanced/backend/web/index.php'
+    'PHP_SELF' => '/advanced/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1539331059.259
+    'REQUEST_TIME' => 1539331059
+    'argv' => [
+        0 => 'r=site%2Flogin'
+    ]
+    'argc' => 1
+]
+2018-10-12 08:14:56 [::1][-][-][error][yii\web\HttpException:400] yii\web\BadRequestHttpException: Unable to verify your data submission. in /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/web/Controller.php:166
+Stack trace:
+#0 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/base/Controller.php(155): yii\web\Controller->beforeAction(Object(yii\base\InlineAction))
+#1 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/base/Module.php(528): yii\base\Controller->runAction('user-location', Array)
+#2 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('user/user-locat...', Array)
+#3 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#4 /Applications/MAMP/htdocs/advanced/backend/web/index.php(17): yii\base\Application->run()
+#5 {main}
+2018-10-12 08:14:56 [::1][-][-][info][application] $_GET = [
+    'r' => 'user/user-location'
+    'countryId' => 'AF'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'advanced-backend' => '3p02ml18h5hb9edcrts0ls36bq'
+    '_identity-backend' => '6aa938524b12e27fbb253b60c805b10138db6120da358f681ef2192be9c6ed4aa:2:{i:0;s:17:\"_identity-backend\";i:1;s:46:\"[1,\"deHM3KPeAOiZfO4kqA0cSjAh-hnIFNJM\",2592000]\";}'
+    '_csrf-backend' => 'e991edca3fdafbb7052ac018b2250fa6e8af469fb3ce14160811ddd8db7ef871a:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"8SE2vZmwDTsaphQFhP2NxK4pgbr98b_D\";}'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'localhost:8888'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '0'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_ORIGIN' => 'http://localhost:8888'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
+    'HTTP_REFERER' => 'http://localhost:8888/advanced/backend/web/index.php?r=user%2Fcreate'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'advanced-backend=3p02ml18h5hb9edcrts0ls36bq; _identity-backend=6aa938524b12e27fbb253b60c805b10138db6120da358f681ef2192be9c6ed4aa%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B1%2C%22deHM3KPeAOiZfO4kqA0cSjAh-hnIFNJM%22%2C2592000%5D%22%3B%7D; _csrf-backend=e991edca3fdafbb7052ac018b2250fa6e8af469fb3ce14160811ddd8db7ef871a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%228SE2vZmwDTsaphQFhP2NxK4pgbr98b_D%22%3B%7D'
+    'PATH' => '/usr/bin:/bin:/usr/sbin:/sbin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.2.34 (Unix) mod_wsgi/3.5 Python/2.7.13 PHP/7.2.7 mod_ssl/2.2.34 OpenSSL/1.0.2o DAV/2 mod_fastcgi/mod_fastcgi-SNAP-0910052141 mod_perl/2.0.9 Perl/v5.24.0'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '8888'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => '/Applications/MAMP/htdocs'
+    'SERVER_ADMIN' => 'you@example.com'
+    'SCRIPT_FILENAME' => '/Applications/MAMP/htdocs/advanced/backend/web/index.php'
+    'REMOTE_PORT' => '52968'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'r=user/user-location&countryId=AF'
+    'REQUEST_URI' => '/advanced/backend/web/index.php?r=user/user-location&countryId=AF'
+    'SCRIPT_NAME' => '/advanced/backend/web/index.php'
+    'PHP_SELF' => '/advanced/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1539332096.672
+    'REQUEST_TIME' => 1539332096
+    'argv' => [
+        0 => 'r=user/user-location&countryId=AF'
+    ]
+    'argc' => 1
+]
+2018-10-12 08:16:05 [::1][1][3p02ml18h5hb9edcrts0ls36bq][error][yii\db\Exception] PDOException: SQLSTATE[HY000]: General error: 1364 Field 'updated_by' doesn't have a default value in /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/Command.php:1258
+Stack trace:
+#0 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/Command.php(1258): PDOStatement->execute()
+#1 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/Command.php(1075): yii\db\Command->internalExecute('INSERT INTO `us...')
+#2 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/Schema.php(433): yii\db\Command->execute()
+#3 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/ActiveRecord.php(549): yii\db\Schema->insert('user', Array)
+#4 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/ActiveRecord.php(515): yii\db\ActiveRecord->insertInternal(NULL)
+#5 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/BaseActiveRecord.php(670): yii\db\ActiveRecord->insert(false, NULL)
+#6 /Applications/MAMP/htdocs/advanced/backend/controllers/UserController.php(100): yii\db\BaseActiveRecord->save(false)
+#7 [internal function]: backend\controllers\UserController->actionCreate()
+#8 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#9 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#10 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/base/Module.php(528): yii\base\Controller->runAction('create', Array)
+#11 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('user/create', Array)
+#12 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#13 /Applications/MAMP/htdocs/advanced/backend/web/index.php(17): yii\base\Application->run()
+#14 {main}
+
+Next yii\db\Exception: SQLSTATE[HY000]: General error: 1364 Field 'updated_by' doesn't have a default value
+The SQL being executed was: INSERT INTO `user` (`username`, `password_hash`, `email`, `status`, `auth_key`, `password_reset_token`, `created_by`, `created_at`, `id`) VALUES ('test', '$2y$13$cKL0//ZJwRWviBvpimK6HOfB7rH/TFJmOnuHUyYurIMQoCbV3jeiW', 'test@yahoo.com', 10, 'LsOlCchZK0Ft33VmW5DlZm0v4o2ZZFly', '0dIPFxKZkQesCbEQKQ83lIf_i7XtLwZh_1539332165', 1, 1539332165, 3) in /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/Schema.php:664
+Stack trace:
+#0 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/Command.php(1263): yii\db\Schema->convertException(Object(PDOException), 'INSERT INTO `us...')
+#1 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/Command.php(1075): yii\db\Command->internalExecute('INSERT INTO `us...')
+#2 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/Schema.php(433): yii\db\Command->execute()
+#3 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/ActiveRecord.php(549): yii\db\Schema->insert('user', Array)
+#4 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/ActiveRecord.php(515): yii\db\ActiveRecord->insertInternal(NULL)
+#5 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/BaseActiveRecord.php(670): yii\db\ActiveRecord->insert(false, NULL)
+#6 /Applications/MAMP/htdocs/advanced/backend/controllers/UserController.php(100): yii\db\BaseActiveRecord->save(false)
+#7 [internal function]: backend\controllers\UserController->actionCreate()
+#8 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#9 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#10 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/base/Module.php(528): yii\base\Controller->runAction('create', Array)
+#11 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('user/create', Array)
+#12 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#13 /Applications/MAMP/htdocs/advanced/backend/web/index.php(17): yii\base\Application->run()
+#14 {main}
+Additional Information:
+Array
+(
+    [0] => HY000
+    [1] => 1364
+    [2] => Field 'updated_by' doesn't have a default value
+)
+
+2018-10-12 08:16:02 [::1][1][3p02ml18h5hb9edcrts0ls36bq][info][application] $_GET = [
+    'r' => 'user/create'
+]
+
+$_POST = [
+    '_csrf-backend' => 'ssuh3_n5rakqP2m9uTiAXAXAW5hTTMA3hsFwID0NcVaKmOTtj6PA3m5rGtzJUNEabZBp1isH9EfhowIZBW8uEg=='
+    'User' => [
+        'username' => 'test'
+        'password_hash' => 'qqqq'
+        'email' => 'test@yahoo.com'
+        'status' => '10'
+    ]
+    'UserProfile' => [
+        'full_name_ar' => 'cc'
+        'full_name_en' => 'cc'
+        'country' => 'AF'
+        'city' => 'AF-KA'
+        'zip' => '+93'
+        'full_address' => 'test address'
+        'user_image' => 'q'
+    ]
+]
+
+$_FILES = []
+
+$_COOKIE = [
+    'advanced-backend' => '3p02ml18h5hb9edcrts0ls36bq'
+    '_identity-backend' => '6aa938524b12e27fbb253b60c805b10138db6120da358f681ef2192be9c6ed4aa:2:{i:0;s:17:\"_identity-backend\";i:1;s:46:\"[1,\"deHM3KPeAOiZfO4kqA0cSjAh-hnIFNJM\",2592000]\";}'
+    '_csrf-backend' => 'e991edca3fdafbb7052ac018b2250fa6e8af469fb3ce14160811ddd8db7ef871a:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"8SE2vZmwDTsaphQFhP2NxK4pgbr98b_D\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__returnUrl' => '/advanced/backend/web/index.php?r=user/'
+    '__id' => 1
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'localhost:8888'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '434'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_ORIGIN' => 'http://localhost:8888'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'
+    'HTTP_REFERER' => 'http://localhost:8888/advanced/backend/web/index.php?r=user%2Findex'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9'
+    'HTTP_COOKIE' => 'advanced-backend=3p02ml18h5hb9edcrts0ls36bq; _identity-backend=6aa938524b12e27fbb253b60c805b10138db6120da358f681ef2192be9c6ed4aa%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B1%2C%22deHM3KPeAOiZfO4kqA0cSjAh-hnIFNJM%22%2C2592000%5D%22%3B%7D; _csrf-backend=e991edca3fdafbb7052ac018b2250fa6e8af469fb3ce14160811ddd8db7ef871a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%228SE2vZmwDTsaphQFhP2NxK4pgbr98b_D%22%3B%7D'
+    'PATH' => '/usr/bin:/bin:/usr/sbin:/sbin'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.2.34 (Unix) mod_wsgi/3.5 Python/2.7.13 PHP/7.2.7 mod_ssl/2.2.34 OpenSSL/1.0.2o DAV/2 mod_fastcgi/mod_fastcgi-SNAP-0910052141 mod_perl/2.0.9 Perl/v5.24.0'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '8888'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => '/Applications/MAMP/htdocs'
+    'SERVER_ADMIN' => 'you@example.com'
+    'SCRIPT_FILENAME' => '/Applications/MAMP/htdocs/advanced/backend/web/index.php'
+    'REMOTE_PORT' => '53209'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'r=user%2Fcreate'
+    'REQUEST_URI' => '/advanced/backend/web/index.php?r=user%2Fcreate'
+    'SCRIPT_NAME' => '/advanced/backend/web/index.php'
+    'PHP_SELF' => '/advanced/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1539332162.797
+    'REQUEST_TIME' => 1539332162
+    'argv' => [
+        0 => 'r=user%2Fcreate'
+    ]
+    'argc' => 1
+]

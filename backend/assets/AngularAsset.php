@@ -22,7 +22,6 @@ class AngularAsset extends AssetBundle
         'angular/js/angular-map-it.js',
         'angular/app/controllers/sidebarCtrl.js',
         'angular/app/controllers/dropdownCtrl.js',
-        'angular/app/controllers/popUpFormCtrl.js',
         'angular/app/controllers/modalCtrl.js',
         'angular/app/directives/windowSize.js',
         'angular/app/directives/dateTime.js',

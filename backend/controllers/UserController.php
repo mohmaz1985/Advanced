@@ -105,15 +105,15 @@ class UserController extends Controller
 
             }catch (\yii\db\Exception $exception){
                 Yii::$app->session->setFlash('danger', "Failed To 
-        inserted User!");
+        inserted User!!");
                 return $this->redirect(['index']);
             }catch (\yii\base\Exception $exception){
                 Yii::$app->session->setFlash('danger', "Failed To 
-        inserted User!");
+        inserted User!!!");
                 return $this->redirect(['index']);
             }catch (\Exception $exception){
                 Yii::$app->session->setFlash('danger', "Failed To 
-        inserted User!");
+        inserted User!!!!");
                 return $this->redirect(['index']);
             }
              
