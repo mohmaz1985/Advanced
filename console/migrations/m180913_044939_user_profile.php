@@ -23,7 +23,7 @@ class m180913_044939_user_profile extends Migration
             'user_id'=>$this->integer()->notNull(),
             'full_name_ar' => $this->string(225)->notNull(),
             'full_name_en' => $this->string(225)->notNull(),
-            'user_image' => $this->string(255),
+            'user_image' => $this->string(400)->defaultValue(Null),
             'country' => $this->string(2)->notNull(),
             'city' => $this->string(6)->notNull(),
             'zip' => $this->string(6)->notNull(),

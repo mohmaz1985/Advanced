@@ -1,3 +1,4 @@
 1. User permissions.
 2. I am not robot in login form.
 3. Reset password.
+4. add birth date to user form.

@@ -13,6 +13,8 @@ use yii\filters\VerbFilter;
 use yii\widgets\ActiveForm;
 use yii\web\Response;
 use \yii\db\Exception;
+use yii\web\UploadedFile;
+
 /**
  * UserController implements the CRUD actions for User model.
  */
@@ -88,8 +90,22 @@ class UserController extends Controller
            $model->auth_key = Yii::$app->security->generateRandomString();
            $model->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
 
-            $model->created_by= Yii::$app->user->id;
-            $model->created_at = time();
+
+           // Get the instance the uploaded file
+           $image_name = Yii::$app->generalComp->generateFileName($model->username);
+
+           $userProfile->image_file = UploadedFile::getInstance($userProfile,'image_file');
+
+           $folderPath = Yii::$app->generalComp->generateFolder('uploads/users/',$model->username);
+        
+           $image_path = $folderPath.'/'.$image_name.'.'.$userProfile->image_file->extension;
+           $userProfile->image_file->saveAs($image_path);
+           //Save the path in db
+           $userProfile->user_image = $image_path; 
+
+
+           $model->created_by= Yii::$app->user->id;
+           $model->created_at = time();
 
             
             // user profile save
@@ -134,7 +150,10 @@ class UserController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
- 
+
+        $userProfile = new UserProfile();
+        $userProfile = $userProfile->findOne(['user_id' => $id]);
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -185,8 +204,8 @@ class UserController extends Controller
         }
     }
 
-    // show ZIP code
+    // User Location
     public function actionUserLocation($countryId){
-        echo Yii::$app->generalComp->countryList($countryId);
+        echo Yii::$app->generalComp->mainAddress($countryId);
     }
 }

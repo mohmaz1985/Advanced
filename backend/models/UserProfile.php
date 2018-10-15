@@ -24,6 +24,7 @@ class UserProfile extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public $image_file;
     public static function tableName()
     {
         return 'user_profile';
@@ -38,6 +39,7 @@ class UserProfile extends \yii\db\ActiveRecord
             [['user_id', 'full_name_ar', 'full_name_en', 'country', 'city', 'zip','full_address'], 'required'],
             [['user_id'], 'integer'],
             [['full_name_ar', 'full_name_en'], 'string', 'max' => 225],
+            [['image_file'],'file'],
             [['user_image'], 'string', 'max' => 255],
             [['country'], 'string', 'max' => 2],
             [['zip','city'], 'string', 'max' => 6],
@@ -58,7 +60,7 @@ class UserProfile extends \yii\db\ActiveRecord
             'user_id' => 'User ID',
             'full_name_ar' => 'Full Name Ar',
             'full_name_en' => 'Full Name En',
-            'user_image' => 'User Image',
+            'image_file' => 'User Image',
             'country' => 'Country',
             'city' => 'City',
             'zip' => 'Zip',

@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
+use kartik\file\FileInput;
 /* @var $this yii\web\View */
 /* @var $model backend\models\User */
 /* @var $form yii\widgets\ActiveForm */
@@ -13,6 +14,7 @@ use yii\helpers\ArrayHelper;
 
     <?php $form = ActiveForm::begin([
     'id' => 'user-form',
+    'options' => ['enctype'=>'multipart/form-data'],
     'enableAjaxValidation' => true,
     'validationUrl' => Url::toRoute('user/validate')
     ]); 
@@ -53,7 +55,7 @@ use yii\helpers\ArrayHelper;
     <div class="form-row">
         <div class="form-group col-md-4">
             <?= $form->field($userProfile, 'country')->dropDownList(
-            ArrayHelper::map(Yii::$app->generalComp->countryList(), 'country_code', 'country_name'),
+            ArrayHelper::map(Yii::$app->generalComp->mainAddress(), 'country_code', 'country_name'),
             ['prompt'=>'Select Country',
              'onChange' =>'$.post("index.php?r=user/user-location&countryId='.'"+$(this).val(),function(data){
                     //alert(data);
@@ -80,7 +82,9 @@ use yii\helpers\ArrayHelper;
     </div>
     <div class="form-row">
         <div class="col-md-12">
-            <?= $form->field($userProfile, 'user_image')->textInput() ?>
+            <?= $form->field($userProfile, 'image_file')->widget(FileInput::classname(), [
+                    'options' => ['accept' => 'image/*'],
+                ]) ?>
         </div>
     </div>
     <div class="form-group">

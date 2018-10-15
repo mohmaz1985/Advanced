@@ -12,6 +12,9 @@ return [
         'generalComp' => [
             'class' => 'common\components\GeneralComponent'
         ],
+        'cryptoData' => [
+            'class' => 'common\components\Crypto'
+        ],
         'authManager'  => 
         [
             'class' => 'yii\rbac\DbManager',

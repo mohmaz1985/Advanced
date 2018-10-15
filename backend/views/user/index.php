@@ -32,8 +32,9 @@ $this->params['breadcrumbs'][] = $this->title;
 	    	'class'=>'modal-header',
 	    ],
 	    'header' => '<h2 class="modal-title">Create User</h2>',
-	    'id' => 'modal',
+	    'id' => 'modal-form',
 	    'size' => 'modal-md',
+        'clientOptions' => ['backdrop' => 'static', 'keyboard' => false],
 	    
 		]);
         ?>
