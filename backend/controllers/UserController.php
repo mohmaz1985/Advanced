@@ -67,6 +67,9 @@ class UserController extends Controller
      */
     public function actionView($id)
     {
+        $userProfile = new UserProfile();
+        $userProfile = $userProfile->findOne(['user_id' => $id]);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -90,18 +93,7 @@ class UserController extends Controller
            $model->auth_key = Yii::$app->security->generateRandomString();
            $model->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
 
-
-           // Get the instance the uploaded file
-           $image_name = Yii::$app->generalComp->generateFileName($model->username);
-
-           $userProfile->image_file = UploadedFile::getInstance($userProfile,'image_file');
-
-           $folderPath = Yii::$app->generalComp->generateFolder('uploads/users/',$model->username);
-        
-           $image_path = $folderPath.'/'.$image_name.'.'.$userProfile->image_file->extension;
-           $userProfile->image_file->saveAs($image_path);
-           //Save the path in db
-           $userProfile->user_image = $image_path; 
+           Yii::$app->generalComp->saveFormFile($model->username,'image_file','user_image',$userProfile,'uploads/users/',$model->username);
 
 
            $model->created_by= Yii::$app->user->id;
@@ -153,10 +145,46 @@ class UserController extends Controller
 
         $userProfile = new UserProfile();
         $userProfile = $userProfile->findOne(['user_id' => $id]);
+        $oldFile = $userProfile->user_image;
+        $oldPass = $model->password_hash;
+         if ($model->load(Yii::$app->request->post()) && $userProfile->load(Yii::$app->request->post())) {
+            echo $model->password_hash;
+            echo '<br/>'. $oldPass;
+        try {
+           
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+           if($oldPass != $model->password_hash)
+           $model->password_hash =Yii::$app->security->generatePasswordHash($model->password_hash);
+
+           //Save File
+           Yii::$app->generalComp->saveFormFile($model->username,'image_file','user_image',$userProfile,'uploads/users/',$model->username,$oldFile);
+
+           $model->updated_by= Yii::$app->user->id;
+           $model->updated_at = time();
+
+
+            //Save All Data
+            $model->save(false);
+            $userProfile->save(false);
+
+            Yii::$app->session->setFlash('success', "User is Successfully Updated!");
             return $this->redirect(['view', 'id' => $model->id]);
+
+            }catch (\yii\db\Exception $exception){
+                Yii::$app->session->setFlash('danger', "Failed To 
+        updated User!!");
+                return $this->redirect(['view', 'id' => $model->id]);
+            }catch (\yii\base\Exception $exception){
+                Yii::$app->session->setFlash('danger', "Failed To 
+        updated User!!!");
+                return $this->redirect(['view', 'id' => $model->id]);
+            }catch (\Exception $exception){
+                Yii::$app->session->setFlash('danger', "Failed To 
+        updated User!!!!");
+               return $this->redirect(['view', 'id' => $model->id]);
+            }
         } else {
+
             return $this->render('update', [
                 'model' => $model,
                 'userProfile' => $userProfile,
@@ -165,10 +193,10 @@ class UserController extends Controller
     }
 
     // ajax validation
-    public function actionValidate()
+    public function actionValidate($id=null)
     {
+        $model = $id===null ? new User : User::findOne($id);
 
-        $model = new User();
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
@@ -205,7 +233,7 @@ class UserController extends Controller
     }
 
     // User Location
-    public function actionUserLocation($countryId){
-        echo Yii::$app->generalComp->mainAddress($countryId);
+    public function actionGetCountry($countryId){
+        echo Yii::$app->generalComp->zipValue($countryId).'_'.Yii::$app->generalComp->cityList($countryId,'change');
     }
 }

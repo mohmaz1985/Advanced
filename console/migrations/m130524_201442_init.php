@@ -53,9 +53,9 @@ class m130524_201442_init extends Migration
                 Yii::$app->security->generateRandomString(),
                 Yii::$app->security->generateRandomString() . '_' . time(),
                 'mohmaz1985@yahoo.com',
-                '010101',
+                '1',
                 time(),
-                '010101',
+                '1',
                 time(),
                 ],
                 [2,
@@ -64,9 +64,9 @@ class m130524_201442_init extends Migration
                 Yii::$app->security->generateRandomString(),
                 Yii::$app->security->generateRandomString() . '_' . time(),
                 'demo@yahoo.com',
-                '010101',
+                '1',
                 time(),
-                '010101',
+                '1',
                 time(),
                 ]
             ]);

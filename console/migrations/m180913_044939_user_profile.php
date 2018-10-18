@@ -55,15 +55,15 @@ class m180913_044939_user_profile extends Migration
                 'محمد السيد',
                 'Mohammad Alsayyed',
                 'JO',
-                'Am',
+                'JO-AM',
                 '+962',
                 'Amman Jordan - Tariq'
                 ],
                 [2,
                 'تجربة',
                 'Demo Demo',
-                'US',
-                'Wa',
+                'JO',
+                'JO-AJ',
                 '+20066',
                 'Amman Jordan - Demo Location',
                 ]

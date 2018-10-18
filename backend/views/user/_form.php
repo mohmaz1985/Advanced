@@ -12,11 +12,19 @@ use kartik\file\FileInput;
 
 <div class="user-form">
 
-    <?php $form = ActiveForm::begin([
+    <?php 
+
+    //Check Unique When Update
+    $validationUrl = ['user/validate'];
+    if (!$model->isNewRecord)
+        $validationUrl['id'] = $model->id;
+
+
+    $form = ActiveForm::begin([
     'id' => 'user-form',
     'options' => ['enctype'=>'multipart/form-data'],
     'enableAjaxValidation' => true,
-    'validationUrl' => Url::toRoute('user/validate')
+    'validationUrl' => $validationUrl
     ]); 
     //'validationUrl' => 'validate'
     ?>
@@ -54,12 +62,13 @@ use kartik\file\FileInput;
     </div>
     <div class="form-row">
         <div class="form-group col-md-4">
-            <?= $form->field($userProfile, 'country')->dropDownList(
-            ArrayHelper::map(Yii::$app->generalComp->mainAddress(), 'country_code', 'country_name'),
+            <?php 
+            echo $form->field($userProfile, 'country')->dropDownList(
+            ArrayHelper::map(Yii::$app->generalComp->countryList($userProfile->country), 'country_code', 'country_name'),
             ['prompt'=>'Select Country',
-             'onChange' =>'$.post("index.php?r=user/user-location&countryId='.'"+$(this).val(),function(data){
+             'onChange' =>'$.post("index.php?r=user/get-country&countryId='.'"+$(this).val(),function(data){
                     //alert(data);
-                    var dataValue = data.split("__");
+                    var dataValue = data.split("_");
                     //alert(dataValue[0]);
                     //alert(dataValue[1]);
                     $("#userprofile-zip").val(dataValue[0]);
@@ -69,7 +78,8 @@ use kartik\file\FileInput;
         </div>
         <div class="form-group col-md-4">
             <?= $form->field($userProfile, 'city')->dropDownList(
-            ['prompt'=>'Select City']) ?>
+                ArrayHelper::map(Yii::$app->generalComp->cityList($userProfile->country), 'city_code', 'city_name'),
+                ['prompt'=>'Select City']) ?>
         </div>
         <div class="form-group col-md-4">
             <?= $form->field($userProfile, 'zip')->textInput() ?>
@@ -84,7 +94,13 @@ use kartik\file\FileInput;
         <div class="col-md-12">
             <?= $form->field($userProfile, 'image_file')->widget(FileInput::classname(), [
                     'options' => ['accept' => 'image/*'],
-                ]) ?>
+                    'pluginOptions' => [
+                    'initialPreview'=>[
+                        Html::img($userProfile->user_image,['class'=>'file-preview-image kv-preview-data']),
+                    ],
+                    'overwriteInitial'=>true
+                    ]
+            ]) ?>
         </div>
     </div>
     <div class="form-group">

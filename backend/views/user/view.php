@@ -27,15 +27,50 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'username',
-            'auth_key',
-            'password_hash',
-            'password_reset_token',
+            [
+                'attribute' => 'full_name_ar',
+                'value' => $model->userProfiles->full_name_ar
+            ],
             'email:email',
-            'status',
-            'created_at',
-            'updated_at',
+             [
+                'attribute' => 'user_image',
+                'format' => 'raw',
+                'value' => function($data){ 
+
+                $path = $data['userProfiles']['user_image'];
+                $class= 'img-thumbnail rounded';
+                $width = '190px';
+                $height = '190px';
+                $alt = 'ggg';
+                return Yii::$app->generalComp->getImage($path,$class,$width,$height,$alt);
+                },
+            ],
+            [
+                'attribute' => 'status',
+                'format' => 'raw',
+                'value' => Yii::$app->generalComp->getStatus($model->status)
+            ],
+            [
+                'attribute' => 'created_by',
+                'format' => 'raw',
+                'value' => Yii::$app->generalComp->userInformation('full_name_en',$model->created_by)
+            ],
+            [
+                'attribute' => 'created_at',
+                'format' => 'raw',
+                'value' => Yii::$app->generalComp->getDateAndTime($model->created_at)
+            ],
+            [
+                'attribute' => 'updated_by',
+                'format' => 'raw',
+                'value' => Yii::$app->generalComp->userInformation('full_name_en',$model->updated_by)
+            ],
+            [
+                'attribute' => 'updated_at',
+                'format' => 'raw',
+                'value' => Yii::$app->generalComp->getDateAndTime($model->updated_at)
+            ],
         ],
     ]) ?>
 

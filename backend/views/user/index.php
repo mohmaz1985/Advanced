@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\bootstrap\Modal;
 use yii\helpers\Url;
+use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -25,6 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
      	]) ?>
     </p>
     <div class="loader sticky-top" style="display: none" id="loadPage"></div>
+
     <?php
 
 	    Modal::begin([
@@ -46,6 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		Modal::end();
 
     ?>
+    <?php Pjax::begin(['enablePushState'=>false]);?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -54,6 +57,23 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id',
             'username',
+            [
+                'attribute' => 'full_name_ar',
+                'value' => 'userProfiles.full_name_ar'
+            ],
+            [
+                'attribute' => 'user_image',
+                'format' => 'raw',
+                'value' => function($data){ 
+
+                $path = $data['userProfiles']['user_image'];
+                $class= 'img-thumbnail rounded mx-auto d-block';
+                $width = '90px';
+                $height = '90px';
+                $alt = 'ggg';
+                return Yii::$app->generalComp->getImage($path,$class,$width,$height,$alt);
+                },
+            ],
             // 'auth_key',
             //'password_hash',
             //'password_reset_token',
@@ -65,4 +85,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+    <?php Pjax::end();?>
 </div>

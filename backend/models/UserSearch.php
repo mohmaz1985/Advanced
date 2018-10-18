@@ -19,7 +19,7 @@ class UserSearch extends User
     {
         return [
             [['id', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['username', 'auth_key', 'password_hash', 'password_reset_token', 'email'], 'safe'],
+            [['username', 'auth_key', 'password_hash', 'password_reset_token', 'email','full_name_ar'], 'safe'],
         ];
     }
 
@@ -57,6 +57,19 @@ class UserSearch extends User
             return $dataProvider;
         }
 
+        $query->joinWith('userProfiles');
+
+        $dataProvider->setSort([
+            'attributes' =>[
+                'username',
+                'user_image',
+                'full_name_ar'=>[
+                    'asc'=>['user_profile.user_id'=>SORT_ASC],
+                    'desc'=>['user_profile.user_id'=>SORT_DESC]
+                ]
+            ]
+        ]);
+
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
@@ -69,7 +82,8 @@ class UserSearch extends User
             ->andFilterWhere(['like', 'auth_key', $this->auth_key])
             ->andFilterWhere(['like', 'password_hash', $this->password_hash])
             ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
-            ->andFilterWhere(['like', 'email', $this->email]);
+            ->andFilterWhere(['like', 'email', $this->email])
+            ->andFilterWhere(['like', 'user_profile.full_name_ar', $this->full_name_ar]);
 
         return $dataProvider;
     }

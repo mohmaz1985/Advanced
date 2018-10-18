@@ -24,6 +24,8 @@ class User extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public $full_name_ar;
+    public $user_image;
     public static function tableName()
     {
         return 'user';
@@ -59,8 +61,12 @@ class User extends \yii\db\ActiveRecord
             'password_reset_token' => 'Password Reset Token',
             'email' => 'Email',
             'status' => 'Status',
+            'created_by' => 'Created by',
             'created_at' => 'Created At',
+            'updated_by' => 'Updated by',
             'updated_at' => 'Updated At',
+            'full_name_ar'=> 'Name',
+            'user_image'=>'Image'
         ];
     }
 
@@ -69,6 +75,6 @@ class User extends \yii\db\ActiveRecord
      */
     public function getUserProfiles()
     {
-        return $this->hasMany(UserProfile::className(), ['user_id' => 'id']);
+        return $this->hasOne(UserProfile::className(), ['user_id' => 'id']);
     }
 }

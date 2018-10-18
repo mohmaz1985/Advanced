@@ -1,5 +1,5 @@
 <?php
-  $this->title = Yii::$app->generalComp->userInformation();
+  $this->title = Yii::$app->generalComp->userLoginInformation('full_name_en');
 ?>
 <!-- Home Page-->
   <div class="row " >
