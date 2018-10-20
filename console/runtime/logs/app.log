@@ -9112,3 +9112,98 @@ $_SERVER = [
     ]
     'argc' => 2
 ]
+2018-10-19 12:41:34 [-][-][-][error][yii\db\Exception] PDOException: SQLSTATE[HY000] [2002] No such file or directory in /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/Connection.php:687
+Stack trace:
+#0 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/Connection.php(687): PDO->__construct('mysql:host=loca...', 'root', 'root', NULL)
+#1 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/Connection.php(613): yii\db\Connection->createPdoInstance()
+#2 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/Connection.php(996): yii\db\Connection->open()
+#3 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/Connection.php(983): yii\db\Connection->getMasterPdo()
+#4 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/Command.php(253): yii\db\Connection->getSlavePdo()
+#5 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/Command.php(1143): yii\db\Command->prepare(true)
+#6 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/Command.php(399): yii\db\Command->queryInternal('fetchAll', NULL)
+#7 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/mysql/Schema.php(312): yii\db\Command->queryAll()
+#8 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/mysql/Schema.php(125): yii\db\mysql\Schema->findColumns(Object(yii\db\TableSchema))
+#9 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/Schema.php(744): yii\db\mysql\Schema->loadTableSchema('migration')
+#10 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/Schema.php(194): yii\db\Schema->getTableMetadata('{{%migration}}', 'schema', true)
+#11 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/console/controllers/MigrateController.php(210): yii\db\Schema->getTableSchema('{{%migration}}', true)
+#12 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php(875): yii\console\controllers\MigrateController->getMigrationHistory(NULL)
+#13 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php(166): yii\console\controllers\BaseMigrateController->getNewMigrations()
+#14 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#15 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#16 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#17 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/console/Controller.php(148): yii\base\Controller->runAction('', Array)
+#18 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/base/Module.php(528): yii\console\Controller->runAction('', Array)
+#19 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('migrate', Array)
+#20 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('migrate', Array)
+#21 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/base/Application.php(386): yii\console\Application->handleRequest(Object(yii\console\Request))
+#22 /Applications/MAMP/htdocs/advanced/yii(23): yii\base\Application->run()
+#23 {main}
+
+Next yii\db\Exception: SQLSTATE[HY000] [2002] No such file or directory in /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/Connection.php:624
+Stack trace:
+#0 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/Connection.php(996): yii\db\Connection->open()
+#1 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/Connection.php(983): yii\db\Connection->getMasterPdo()
+#2 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/Command.php(253): yii\db\Connection->getSlavePdo()
+#3 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/Command.php(1143): yii\db\Command->prepare(true)
+#4 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/Command.php(399): yii\db\Command->queryInternal('fetchAll', NULL)
+#5 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/mysql/Schema.php(312): yii\db\Command->queryAll()
+#6 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/mysql/Schema.php(125): yii\db\mysql\Schema->findColumns(Object(yii\db\TableSchema))
+#7 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/Schema.php(744): yii\db\mysql\Schema->loadTableSchema('migration')
+#8 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/db/Schema.php(194): yii\db\Schema->getTableMetadata('{{%migration}}', 'schema', true)
+#9 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/console/controllers/MigrateController.php(210): yii\db\Schema->getTableSchema('{{%migration}}', true)
+#10 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php(875): yii\console\controllers\MigrateController->getMigrationHistory(NULL)
+#11 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/console/controllers/BaseMigrateController.php(166): yii\console\controllers\BaseMigrateController->getNewMigrations()
+#12 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#13 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#14 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#15 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/console/Controller.php(148): yii\base\Controller->runAction('', Array)
+#16 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/base/Module.php(528): yii\console\Controller->runAction('', Array)
+#17 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/console/Application.php(180): yii\base\Module->runAction('migrate', Array)
+#18 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/console/Application.php(147): yii\console\Application->runAction('migrate', Array)
+#19 /Applications/MAMP/htdocs/advanced/vendor/yiisoft/yii2/base/Application.php(386): yii\console\Application->handleRequest(Object(yii\console\Request))
+#20 /Applications/MAMP/htdocs/advanced/yii(23): yii\base\Application->run()
+#21 {main}
+Additional Information:
+
+2018-10-19 12:41:33 [-][-][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = []
+
+$_SERVER = [
+    'TERM_PROGRAM' => 'Apple_Terminal'
+    'TERM' => 'xterm-256color'
+    'SHELL' => '/bin/bash'
+    'TMPDIR' => '/var/folders/b8/tvfyrm1x3xlfjb1mv3m4g3580000gn/T/'
+    'Apple_PubSub_Socket_Render' => '/private/tmp/com.apple.launchd.D0yTGKjLx1/Render'
+    'TERM_PROGRAM_VERSION' => '404'
+    'TERM_SESSION_ID' => '40E819F9-9008-47A2-BF49-5CC14C8719F7'
+    'USER' => 'mohammadalsayyed'
+    'SSH_AUTH_SOCK' => '/private/tmp/com.apple.launchd.JKMVoB6nAH/Listeners'
+    'PATH' => '/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
+    'PWD' => '/Applications/MAMP/htdocs/advanced'
+    'XPC_FLAGS' => '0x0'
+    'XPC_SERVICE_NAME' => '0'
+    'HOME' => '/Users/mohammadalsayyed'
+    'SHLVL' => '1'
+    'LOGNAME' => 'mohammadalsayyed'
+    'LC_CTYPE' => 'UTF-8'
+    'SECURITYSESSIONID' => '186a8'
+    '_' => '/usr/bin/php'
+    '__CF_USER_TEXT_ENCODING' => '0x1F5:0x0:0x0'
+    'PHP_SELF' => 'yii'
+    'SCRIPT_NAME' => 'yii'
+    'SCRIPT_FILENAME' => 'yii'
+    'PATH_TRANSLATED' => 'yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1539952893.8973
+    'REQUEST_TIME' => 1539952893
+    'argv' => [
+        0 => 'yii'
+        1 => 'migrate'
+    ]
+    'argc' => 2
+]

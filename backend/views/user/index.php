@@ -12,6 +12,8 @@ use yii\widgets\Pjax;
 $this->title = 'Users';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+<div id="message" ></div>
 <div class="user-index pop-up-form" >
     
     <h1><?= Html::encode($this->title) ?></h1>
@@ -48,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		Modal::end();
 
     ?>
-    <?php Pjax::begin(['enablePushState'=>false]);?>
+    <?php Pjax::begin(['id'=>'userIDView','enablePushState'=>false]);?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -81,9 +83,20 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'status',
             // 'created_at',
             // 'updated_at',
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'buttons'=>[
+                'update' => function ($url, $model) {
+                   $url = Url::to(['user/update', 'id' => $model->id]);
+                   return Html::a('<span class="fas fa-pencil-alt"></span>', '#', ['title' => 'update','value' =>$url,'id' => 'modalButtonIndexUpdate']);
 
-            ['class' => 'yii\grid\ActionColumn'],
+               }
+            ],
+
+
+            ],
         ],
+
     ]); ?>
     <?php Pjax::end();?>
 </div>

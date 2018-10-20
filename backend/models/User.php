@@ -26,6 +26,9 @@ class User extends \yii\db\ActiveRecord
      */
     public $full_name_ar;
     public $user_image;
+    public $autoAddress;
+    public $fullAddress;
+
     public static function tableName()
     {
         return 'user';
@@ -66,7 +69,9 @@ class User extends \yii\db\ActiveRecord
             'updated_by' => 'Updated by',
             'updated_at' => 'Updated At',
             'full_name_ar'=> 'Name',
-            'user_image'=>'Image'
+            'user_image'=>'Image',
+            'autoAddress'=>'Country / City /Zip code',
+            'autoAddress'=>'Address'
         ];
     }
 

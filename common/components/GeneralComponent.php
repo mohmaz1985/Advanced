@@ -68,6 +68,50 @@ class GeneralComponent extends Component{
       return $countriesList['countryCodes'];	
     }
     // End Get Country List
+
+
+    
+    // Get Auto Adress
+    public function getAutoAdress($country='',$city='',$zip='',$full_address='',$show){
+      $jsonValue = file_get_contents(Yii::getAlias('@webroot')."/js/countryList.json");
+      $countriesList = json_decode($jsonValue,true);
+
+       foreach($countriesList['countryCodes'] as $key => $countryValue)
+       {  
+          if ( $countryValue['country_code'] == $country ){
+             $countryName = $countryValue['country_name'];
+             $zip = $countryValue['dialling_code'];
+
+             foreach ($countryValue['main_city'] as $key => $citiesName) {
+                   
+                    if($citiesName['city_code']==$city)
+                    {
+                      $cityName = $citiesName['city_name'];
+                    }
+             }
+
+          }
+             
+       }
+
+       switch ($show) {
+        case "all":
+            return $countryName.' - '.$cityName.' - '.$zip.'<br/>'.$full_address;
+            break;
+        case "country":
+            return $countryName;
+            break;
+        case "zip":
+            return $zip;
+            break;
+        case "city":
+            return $cityName;
+            break;
+        default:
+            echo "-";
+      }
+    }
+    // Get Auto Adress
     
     // Get City List
       public function cityList($countryId= '',$change=''){

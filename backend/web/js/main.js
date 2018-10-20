@@ -1,6 +1,6 @@
-jQuery(function(){
-	$('#modalButton').click(function(){
-		
+jQuery(function(e){
+	$('#modalButton,#modalButtonIndexUpdate,#modalButtonUpdate').click(function(e){
+		e.preventDefault;
 		var url = $(this).attr('value');
 		$('#modal-form').find('#modalContant')
 			.load(url);
@@ -11,6 +11,7 @@ jQuery(function(){
 		}, 500);
 
 	});
+
 	//Scroll main model after close sub
 	$(document).on("hidden.bs.modal","#kvFileinputModal.modal", function () {
   		$("body").addClass("modal-open");

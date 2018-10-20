@@ -54,10 +54,14 @@ class UserController extends Controller
         $searchModel = new UserSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
+        if(!Yii::$app->request->isAjax)
+        {
+            return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-        ]);
+            ]);
+        }
+        
     }
 
     /**
@@ -88,7 +92,6 @@ class UserController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $userProfile->load(Yii::$app->request->post())) {
 
-        try {
            $model->password_hash =Yii::$app->security->generatePasswordHash($model->password_hash);
            $model->auth_key = Yii::$app->security->generateRandomString();
            $model->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
@@ -104,26 +107,17 @@ class UserController extends Controller
             $max = $model->find()->max('id')+1;
             $model->id = $max; 
             $userProfile->user_id = $max;
+
             //Save All Data
-            $model->save(false);
-            $userProfile->save(false);
-
-            Yii::$app->session->setFlash('success', "User is Successfully Inserted!");
-            return $this->redirect(['view', 'id' => $max]); 
-
-            }catch (\yii\db\Exception $exception){
-                Yii::$app->session->setFlash('danger', "Failed To 
-        inserted User!!");
-                return $this->redirect(['index']);
-            }catch (\yii\base\Exception $exception){
-                Yii::$app->session->setFlash('danger', "Failed To 
-        inserted User!!!");
-                return $this->redirect(['index']);
-            }catch (\Exception $exception){
-                Yii::$app->session->setFlash('danger', "Failed To 
-        inserted User!!!!");
-                return $this->redirect(['index']);
+            if($model->save(false)){
+                $userProfile->save(false);
+                
+                $arr = ['action'=>1,'message'=>'User is Successfully Updated!'];
+                echo json_encode($arr);
+            }else{
+                $arr = ['action'=>0,'message'=>'Failed To updated User!'];
             }
+
              
         } else {
             return $this->renderAjax('create', [
@@ -148,10 +142,6 @@ class UserController extends Controller
         $oldFile = $userProfile->user_image;
         $oldPass = $model->password_hash;
          if ($model->load(Yii::$app->request->post()) && $userProfile->load(Yii::$app->request->post())) {
-            echo $model->password_hash;
-            echo '<br/>'. $oldPass;
-        try {
-           
 
            if($oldPass != $model->password_hash)
            $model->password_hash =Yii::$app->security->generatePasswordHash($model->password_hash);
@@ -164,28 +154,18 @@ class UserController extends Controller
 
 
             //Save All Data
-            $model->save(false);
-            $userProfile->save(false);
-
-            Yii::$app->session->setFlash('success', "User is Successfully Updated!");
-            return $this->redirect(['view', 'id' => $model->id]);
-
-            }catch (\yii\db\Exception $exception){
-                Yii::$app->session->setFlash('danger', "Failed To 
-        updated User!!");
-                return $this->redirect(['view', 'id' => $model->id]);
-            }catch (\yii\base\Exception $exception){
-                Yii::$app->session->setFlash('danger', "Failed To 
-        updated User!!!");
-                return $this->redirect(['view', 'id' => $model->id]);
-            }catch (\Exception $exception){
-                Yii::$app->session->setFlash('danger', "Failed To 
-        updated User!!!!");
-               return $this->redirect(['view', 'id' => $model->id]);
+            if($model->save(false)){
+                $userProfile->save(false);
+                
+                $arr = ['action'=>1,'message'=>'User is Successfully Updated!'];
+                echo json_encode($arr);
+            }else{
+                $arr = ['action'=>0,'message'=>'Failed To updated User!'];
             }
+
         } else {
 
-            return $this->render('update', [
+            return $this->renderAjax('update', [
                 'model' => $model,
                 'userProfile' => $userProfile,
             ]);
@@ -234,6 +214,10 @@ class UserController extends Controller
 
     // User Location
     public function actionGetCountry($countryId){
-        echo Yii::$app->generalComp->zipValue($countryId).'_'.Yii::$app->generalComp->cityList($countryId,'change');
+
+
+          $arr = ['zip'=>Yii::$app->generalComp->zipValue($countryId),
+          'city'=>Yii::$app->generalComp->cityList($countryId,'change')];
+                echo json_encode($arr);
     }
 }

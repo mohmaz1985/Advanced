@@ -3,7 +3,7 @@ return [
     'components' => [
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=advanced',
+            'dsn' => 'mysql:host=localhost;port=8888;dbname=advanced;unix_socket=/Applications/MAMP/tmp/mysql/mysql.sock',
             'username' => 'root',
             'password' => 'root',
             'charset' => 'utf8',
@@ -20,7 +20,7 @@ return [
 ];
 
 /* For Mac*/
-//'dsn' => 'mysql:host=localhost;port=8888;dbname=speedLinkDB;unix_socket=/Applications/MAMP/tmp/mysql/mysql.sock',
+//'dsn' => 'mysql:host=localhost;port=8888;dbname=advanced;unix_socket=/Applications/MAMP/tmp/mysql/mysql.sock',
 
 /* For Windows*/
 //'dsn' => 'mysql:host=localhost;dbname=advanced',

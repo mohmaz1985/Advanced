@@ -21,7 +21,7 @@ use kartik\file\FileInput;
 
 
     $form = ActiveForm::begin([
-    'id' => 'user-form',
+    'id' => $model->formName(),
     'options' => ['enctype'=>'multipart/form-data'],
     'enableAjaxValidation' => true,
     'validationUrl' => $validationUrl
@@ -68,11 +68,10 @@ use kartik\file\FileInput;
             ['prompt'=>'Select Country',
              'onChange' =>'$.post("index.php?r=user/get-country&countryId='.'"+$(this).val(),function(data){
                     //alert(data);
-                    var dataValue = data.split("_");
-                    //alert(dataValue[0]);
-                    //alert(dataValue[1]);
-                    $("#userprofile-zip").val(dataValue[0]);
-                    $("select#userprofile-city").html(dataValue[1]);
+                    obj = JSON.parse(data);
+                    
+                    $("#userprofile-zip").val(obj.zip);
+                    $("select#userprofile-city").html(obj.city);
              });',
             ]) ?>
         </div>
@@ -110,3 +109,49 @@ use kartik\file\FileInput;
     <?php ActiveForm::end(); ?>
 
 </div>
+<?php
+$script = <<< JS
+    $('form#{$model->formName()}').on('beforeSubmit',function(e)
+    {
+        var \$form =$(this);
+        var formData = new FormData(this); 
+        $('#message').html('');
+        $.ajax( {
+          url:  \$form.attr("action"),
+          type: 'POST',
+          data: new FormData( this ),
+          success: function(response) {
+            obj = JSON.parse(response);
+                
+                if(obj.action == 1){
+                $(document).find('#modal-form').modal('hide');
+                $('#message').append('<div class="alert alert-success">'+obj.message+'</div>');
+                $.pjax.reload({container:'#userIDView'});
+
+               }else{
+                $(document).find('#modal-form').modal('hide');
+                $('#message').append('<div class="alert alert-danger">'+obj.message+'</div>');
+                $.pjax.reload({container:'#userIDView'});
+               }
+            },
+
+            error: function(){
+                $(document).find('#modal-form').modal('hide');
+                $('#message').append('<div class="alert alert-danger">ERROR at PHP side!!</div>');
+                $.pjax.reload({container:'#userIDView'});
+            },
+            processData: false,
+            contentType: false
+        } );
+        e.preventDefault;
+        return false;
+    }
+    );
+JS;
+$this->registerJs($script);
+?>
+
+
+
+
+
