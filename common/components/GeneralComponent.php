@@ -27,18 +27,22 @@ class GeneralComponent extends Component{
     public function userInformation($info,$userID){
        
        $userProfileModel = UserProfile::find()->where(['user_id' => $userID])->one();
-       if($info=='country')
+       
+       if($info=='country' && isset($userProfileModel->country))
          $info = $userProfileModel->country;
-       else if($info=='city')
+       else if($info =='city' && isset($userProfileModel->city))
          $info = $userProfileModel->city;
-       else if($info=='zip')
+       else if($info =='zip' && isset($userProfileModel->zip))
          $info = $userProfileModel->zip;
-       else if($info=='user_image')
+       else if($info =='user_image' && isset($userProfileModel->user_image))
          $info = $userProfileModel->user_image;
-       else if($info=='full_name_ar')
+       else if($info =='full_name_ar' && isset($userProfileModel->full_name_ar))
          $info = $userProfileModel->full_name_ar;
-       else if($info=='full_name_en')
+       else if($info =='full_name_en' && isset($userProfileModel->full_name_en))
          $info = $userProfileModel->full_name_en;
+       else {
+        $info = '-';
+       }
        
        return $info;
     }

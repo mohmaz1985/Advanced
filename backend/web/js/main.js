@@ -1,6 +1,6 @@
 jQuery(function(e){
-	$('#modalButton,#modalButtonIndexUpdate,#modalButtonUpdate').click(function(e){
-		e.preventDefault;
+	$('body').on('click','#modalButton,#modalButtonIndexUpdate,#modalButtonUpdate',function(e){
+		event.preventDefault();
 		var url = $(this).attr('value');
 		$('#modal-form').find('#modalContant')
 			.load(url);

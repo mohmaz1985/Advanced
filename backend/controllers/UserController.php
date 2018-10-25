@@ -54,14 +54,10 @@ class UserController extends Controller
         $searchModel = new UserSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        if(!Yii::$app->request->isAjax)
-        {
             return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             ]);
-        }
-        
     }
 
     /**
@@ -191,7 +187,14 @@ class UserController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $modelData  = $this->findModel($id);
+        
+        $modelData->status = 0;
+        if($modelData->save(false)){
+              Yii::$app->session->setFlash('success', "User deleted successfully.");
+        }else{
+             Yii::$app->session->setFlash('error', "User not deleted successfully.");
+        }
 
         return $this->redirect(['index']);
     }

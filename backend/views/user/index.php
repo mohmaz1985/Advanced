@@ -88,7 +88,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'buttons'=>[
                 'update' => function ($url, $model) {
                    $url = Url::to(['user/update', 'id' => $model->id]);
-                   return Html::a('<span class="fas fa-pencil-alt"></span>', '#', ['title' => 'update','value' =>$url,'id' => 'modalButtonIndexUpdate']);
+                   return Html::a('<span class="fas fa-pencil-alt"></span>', '#', ['title' => 'update','value' =>$url,'id' => 'modalButtonIndexUpdate','class'=>'s']);
 
                }
             ],
@@ -100,3 +100,5 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
     <?php Pjax::end();?>
 </div>
+<?php
+

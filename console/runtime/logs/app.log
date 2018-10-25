@@ -9207,3 +9207,76 @@ $_SERVER = [
     ]
     'argc' => 2
 ]
+2018-10-23 11:43:26 [-][-][-][error][yii\console\UnknownCommandException] yii\base\InvalidRouteException: Unable to resolve the request "mograte". in C:\xampp\htdocs\advanced\vendor\yiisoft\yii2\base\Module.php:537
+Stack trace:
+#0 C:\xampp\htdocs\advanced\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('mograte', Array)
+#1 C:\xampp\htdocs\advanced\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('mograte', Array)
+#2 C:\xampp\htdocs\advanced\vendor\yiisoft\yii2\base\Application.php(386): yii\console\Application->handleRequest(Object(yii\console\Request))
+#3 C:\xampp\htdocs\advanced\yii(23): yii\base\Application->run()
+#4 {main}
+
+Next yii\console\UnknownCommandException: Unknown command "mograte". in C:\xampp\htdocs\advanced\vendor\yiisoft\yii2\console\Application.php:183
+Stack trace:
+#0 C:\xampp\htdocs\advanced\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('mograte', Array)
+#1 C:\xampp\htdocs\advanced\vendor\yiisoft\yii2\base\Application.php(386): yii\console\Application->handleRequest(Object(yii\console\Request))
+#2 C:\xampp\htdocs\advanced\yii(23): yii\base\Application->run()
+#3 {main}
+2018-10-23 11:43:25 [-][-][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = []
+
+$_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'APPDATA' => 'C:\\Users\\m.alsayyed\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'JVA-ALSAYYED'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\m.alsayyed'
+    'LOCALAPPDATA' => 'C:\\Users\\m.alsayyed\\AppData\\Local'
+    'LOGONSERVER' => '\\\\MWIDC02'
+    'NUMBER_OF_PROCESSORS' => '4'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\xampp\\php;C:\\composer;C:\\Program Files\\Git\\cmd;C:\\Users\\m.alsayyed\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PHP_COMMAND' => 'php.exe'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_IDENTIFIER' => 'x86 Family 6 Model 42 Stepping 7, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '2a07'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\M75AA~1.ALS\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\M75AA~1.ALS\\AppData\\Local\\Temp'
+    'USERDNSDOMAIN' => 'MWI.GOV.JO'
+    'USERDOMAIN' => 'MWI'
+    'USERNAME' => 'M.Alsayyed'
+    'USERPROFILE' => 'C:\\Users\\m.alsayyed'
+    'windir' => 'C:\\Windows'
+    'windows_tracing_flags' => '3'
+    'windows_tracing_logfile' => 'C:\\BVTBin\\Tests\\installpackage\\csilogfile.log'
+    'YII_PATH' => 'C:\\xampp\\htdocs\\advanced\\'
+    'PHP_SELF' => 'C:\\xampp\\htdocs\\advanced\\yii'
+    'SCRIPT_NAME' => 'C:\\xampp\\htdocs\\advanced\\yii'
+    'SCRIPT_FILENAME' => 'C:\\xampp\\htdocs\\advanced\\yii'
+    'PATH_TRANSLATED' => 'C:\\xampp\\htdocs\\advanced\\yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1540287805.9324
+    'REQUEST_TIME' => 1540287805
+    'argv' => [
+        0 => 'C:\\xampp\\htdocs\\advanced\\yii'
+        1 => 'mograte'
+    ]
+    'argc' => 2
+]

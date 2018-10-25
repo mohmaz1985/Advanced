@@ -34,12 +34,16 @@ return [
                 ],
             ],
         ],
+        'authManager'=>[
+            'class' => 'yii\rbca\DbManger',
+            'defaultRoles' => ['guest']
+        ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
         'assetManager' => [
             /*'class' => 'yii\web\AssetManager',
-            'forceCopy' => true,*/         
+            'forceCopy' => true, */     
          ],
         /*
         'urlManager' => [
