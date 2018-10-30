@@ -11,7 +11,14 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+        'auth' => [
+            'class' => 'backend\modules\auth\module',
+        ],
+        'rbac' => [
+            'class' => 'yii2mod\rbac\Module',
+        ],
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
@@ -34,10 +41,6 @@ return [
                 ],
             ],
         ],
-        'authManager'=>[
-            'class' => 'yii\rbca\DbManger',
-            'defaultRoles' => ['guest']
-        ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
@@ -45,6 +48,15 @@ return [
             /*'class' => 'yii\web\AssetManager',
             'forceCopy' => true, */     
          ],
+         'i18n' => [
+            'translations' => [
+                'yii2mod.rbac' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@yii2mod/rbac/messages',
+                ],
+                // ...
+            ],
+        ],
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,

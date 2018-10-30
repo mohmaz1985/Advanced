@@ -21,7 +21,8 @@
         "bower-asset/bootstrap": "~4.0.0@alpha",
         "bower-asset/angular": "*",
         "bower-asset/angular-route": "1.7.3",
-        "kartik-v/yii2-widgets": "dev-master"
+        "kartik-v/yii2-widgets": "dev-master",
+        "yii2mod/yii2-rbac": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

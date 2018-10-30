@@ -7,8 +7,8 @@ namespace Composer\Autoload;
 class ComposerStaticInit10d058c6e741b7af9823877b39661683
 {
     public static $files = array (
-        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
@@ -20,12 +20,14 @@ class ComposerStaticInit10d058c6e741b7af9823877b39661683
         'y' => 
         array (
             'yii\\swiftmailer\\' => 16,
+            'yii\\jui\\' => 8,
             'yii\\gii\\' => 8,
             'yii\\faker\\' => 10,
             'yii\\debug\\' => 10,
             'yii\\composer\\' => 13,
             'yii\\bootstrap\\' => 14,
             'yii\\' => 4,
+            'yii2mod\\rbac\\' => 13,
         ),
         'p' => 
         array (
@@ -55,6 +57,10 @@ class ComposerStaticInit10d058c6e741b7af9823877b39661683
             'kartik\\base\\' => 12,
             'kartik\\alert\\' => 13,
             'kartik\\affix\\' => 13,
+        ),
+        'd' => 
+        array (
+            'dosamigos\\arrayquery\\' => 21,
         ),
         'c' => 
         array (
@@ -110,6 +116,10 @@ class ComposerStaticInit10d058c6e741b7af9823877b39661683
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-swiftmailer/src',
         ),
+        'yii\\jui\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/yii2-jui',
+        ),
         'yii\\gii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-gii',
@@ -133,6 +143,10 @@ class ComposerStaticInit10d058c6e741b7af9823877b39661683
         'yii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
+        ),
+        'yii2mod\\rbac\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yii2mod/yii2-rbac',
         ),
         'phpDocumentor\\Reflection\\' => 
         array (
@@ -227,6 +241,10 @@ class ComposerStaticInit10d058c6e741b7af9823877b39661683
         'kartik\\affix\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-affix',
+        ),
+        'dosamigos\\arrayquery\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/2amigos/yii2-arrayquery-component/src',
         ),
         'cebe\\markdown\\' => 
         array (
