@@ -6,6 +6,7 @@ use dosamigos\arrayquery\ArrayQuery;
 use Yii;
 use yii\base\Model;
 use yii\data\ArrayDataProvider;
+use yii\rbac\Item;
 use backend\modules\auth\models\AuthItem;
 
 /**
@@ -70,9 +71,13 @@ class AuthItemSearch extends Model
         
         $authManager = Yii::$app->getAuthManager();
 
-        $items = $authManager->getPermissions();
-        //$items = $authManager->getRoles();
-        
+        if($this->type == Item::TYPE_ROLE){
+            $items = $authManager->getRoles();
+        }else{
+            $items = $authManager->getPermissions();
+        }
+       
+              
         $query = new ArrayQuery($items);
         // add conditions that should always apply here
 

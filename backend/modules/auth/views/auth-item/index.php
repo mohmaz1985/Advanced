@@ -7,7 +7,8 @@ use yii\grid\GridView;
 /* @var $searchModel backend\modules\auth\models\AuthItemSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Auth Items';
+$labels = $this->context->getLabels();
+$this->title = $labels['Items'];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="auth-item-index">
@@ -16,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Auth Item', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create '.$labels['Items'], ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -25,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'name',
-            'type',
+            //'type',
             'description:ntext',
             'ruleName',
             'data',

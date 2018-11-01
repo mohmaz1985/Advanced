@@ -4,6 +4,8 @@ namespace backend\modules\auth\models;
 
 use Yii;
 use yii\base\Model;
+use yii\rbac\Item;
+use yii\helpers\Json;
 /**
  * This is the model class for table "auth_item".
  *
@@ -25,11 +27,54 @@ use yii\base\Model;
 class AuthItem extends Model
 {
     /**
-     * @inheritdoc
+     * @var string auth item name
      */
-    public static function tableName()
+    public $name;
+
+    /**
+     * @var int auth item type
+     */
+    public $type;
+
+    /**
+     * @var string auth item description
+     */
+    public $description;
+
+    /**
+     * @var string biz rule name
+     */
+    public $ruleName;
+
+    /**
+     * @var null|string additional data
+     */
+    public $data;
+
+    /**
+     * @var \yii\rbac\ManagerInterface
+     */
+    protected $manager;
+
+    /**
+     * @var Item
+     */
+    private $_item;
+
+     public function __construct($item = null, $config = [])
     {
-        return 'auth_item';
+        $this->_item = $item;
+        $this->manager = Yii::$app->authManager;
+
+        if ($item !== null) {
+            $this->name = $item->name;
+            $this->type = $item->type;
+            $this->description = $item->description;
+            $this->ruleName = $item->ruleName;
+            $this->data = $item->data === null ? null : Json::encode($item->data);
+        }
+
+        parent::__construct($config);
     }
 
     /**
@@ -39,10 +84,10 @@ class AuthItem extends Model
     {
         return [
             [['name', 'type'], 'required'],
-            [['type', 'created_at', 'updated_at'], 'integer'],
+            [['type'], 'integer'],
             [['description', 'data'], 'string'],
-            [['name', 'rule_name'], 'string', 'max' => 64],
-            [['rule_name'], 'exist', 'skipOnError' => true, 'targetClass' => AuthRule::className(), 'targetAttribute' => ['rule_name' => 'name']],
+            [['name', 'ruleName'], 'string', 'max' => 64],
+            [['ruleName'], 'exist', 'skipOnError' => true, 'targetClass' => AuthRule::className(), 'targetAttribute' => ['ruleName' => 'name']],
         ];
     }
 
@@ -108,5 +153,54 @@ class AuthItem extends Model
     public function getParents()
     {
         return $this->hasMany(AuthItem::className(), ['name' => 'parent'])->viaTable('auth_item_child', ['child' => 'name']);
+    }
+
+    /**
+     * Check if is new record.
+     *
+     * @return bool
+     */
+    public function getIsNewRecord(): bool
+    {
+        return $this->_item === null;
+    }
+
+     /**
+     * Save role to [[\yii\rbac\authManager]]
+     *
+     * @return bool
+     */
+    public function save(): bool
+    {
+       
+        
+            if ($this->_item === null) {
+                if ($this->type == Item::TYPE_ROLE) {
+                    $this->_item = $this->manager->createRole($this->name);
+                } else {
+                    $this->_item = $this->manager->createPermission($this->name);
+                }
+                $isNew = true;
+                $oldName = false;
+            } else {
+                $isNew = false;
+                $oldName = $this->_item->name;
+            }
+
+            $this->_item->name = $this->name;
+            $this->_item->description = $this->description;
+            $this->_item->ruleName = $this->ruleName;
+            $this->_item->data = Json::decode($this->data);
+
+            if ($isNew) {
+                $this->manager->add($this->_item);
+            } else {
+                $this->manager->update($oldName, $this->_item);
+            }
+
+            return true;
+        
+
+        return false;
     }
 }

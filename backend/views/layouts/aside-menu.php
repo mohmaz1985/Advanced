@@ -38,6 +38,15 @@
             <i class="fas fa-cogs"></i> 
              Settings</a>
           </li>
+          <div class="dropdown-divider"></div>
+          <li ><a href="http://localhost/advanced/backend/web/index.php?r=auth/permission" class="dropdown-item">
+            <i class="fas fa-cogs"></i> 
+             Permission</a>
+          </li>
+          <li ><a href="http://localhost/advanced/backend/web/index.php?r=auth/role" class="dropdown-item">
+            <i class="fas fa-cogs"></i> 
+             Role</a>
+          </li>
         </ul>
       </li>     
     </ul>

@@ -3,11 +3,12 @@
 namespace backend\modules\auth\controllers;
 
 use Yii;
-use backend\modules\auth\models\AuthItem;
-use backend\modules\auth\models\AuthItemSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use backend\modules\auth\models\AuthItem;
+use backend\modules\auth\models\AuthItemSearch;
+use yii\rbac\Item;
 
 /**
  * AuthItemController implements the CRUD actions for AuthItem model.
@@ -20,6 +21,16 @@ class AuthItemController extends Controller
     public $searchClass = [
         'class' => AuthItemSearch::class,
     ];
+
+    /**
+     * @var int Type of Auth Item
+     */
+    protected $type;
+
+    /**
+     * @var array labels use in view
+     */
+    protected $labels;
 
     /**
      * @inheritdoc
@@ -42,12 +53,12 @@ class AuthItemController extends Controller
      */
     public function actionIndex()
     {
-        
+
         $searchModel = Yii::createObject($this->searchClass);
-        //$searchModel->type = $this->type;
+        $searchModel->type = $this->type;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
+        return $this->render('/auth-item/index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -73,11 +84,14 @@ class AuthItemController extends Controller
     public function actionCreate()
     {
         $model = new AuthItem();
+        $model->type = $this->type;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->name]);
+
+            Yii::$app->session->setFlash('success',  'Item has been saved.');
+            return $this->redirect(['/auth-item/view', 'id' => $model->name]);
         } else {
-            return $this->render('create', [
+            return $this->render('/auth-item/create', [
                 'model' => $model,
             ]);
         }
@@ -129,5 +143,13 @@ class AuthItemController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    /**
+     * @return array
+     */
+    public function getLabels()
+    {
+        return $this->labels;
     }
 }
