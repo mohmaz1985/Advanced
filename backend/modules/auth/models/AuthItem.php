@@ -203,4 +203,12 @@ class AuthItem extends Model
 
         return false;
     }
+
+    /**
+     * @return null|Item
+     */
+    public function getItem()
+    {
+        return $this->_item;
+    }
 }

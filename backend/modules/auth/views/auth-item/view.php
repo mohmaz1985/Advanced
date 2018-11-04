@@ -6,8 +6,9 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\modules\auth\models\AuthItem */
 
+$labels = $this->context->getLabels();
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Auth Items', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $labels['Item'], 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="auth-item-view">
@@ -31,10 +32,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'type',
             'description:ntext',
-            'rule_name',
+            'ruleName',
             'data',
-            'created_at',
-            'updated_at',
+            /*'created_at',
+            'updated_at',*/
         ],
     ]) ?>
 

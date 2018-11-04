@@ -16,14 +16,14 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-   <?php echo $form->field($model, 'ruleName')->widget('yii\jui\AutoComplete', [
+   <?php /*echo $form->field($model, 'ruleName')->widget('yii\jui\AutoComplete', [
         'options' => [
             'class' => 'form-control',
         ],
         'clientOptions' => [
             'source' => array_keys(Yii::$app->authManager->getRules()),
         ],
-    ]);
+    ]);*/
     ?>
 
     <?= $form->field($model, 'data')->textInput() ?>

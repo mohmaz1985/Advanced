@@ -58,7 +58,7 @@ class AuthItemController extends Controller
         $searchModel->type = $this->type;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('/auth-item/index', [
+        return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -69,10 +69,11 @@ class AuthItemController extends Controller
      * @param string $id
      * @return mixed
      */
-    public function actionView($id)
+    public function actionView(string $id)
     {
+        $model = $this->findModel($id);
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 
@@ -89,9 +90,9 @@ class AuthItemController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
             Yii::$app->session->setFlash('success',  'Item has been saved.');
-            return $this->redirect(['/auth-item/view', 'id' => $model->name]);
+            return $this->redirect(['view', 'id' => $model->name]);
         } else {
-            return $this->render('/auth-item/create', [
+            return $this->render('create', [
                 'model' => $model,
             ]);
         }
@@ -103,12 +104,15 @@ class AuthItemController extends Controller
      * @param string $id
      * @return mixed
      */
-    public function actionUpdate($id)
+    public function actionUpdate(string $id)
     {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            
+            Yii::$app->session->setFlash('success', 'Item has been saved.');
             return $this->redirect(['view', 'id' => $model->name]);
+
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -122,9 +126,12 @@ class AuthItemController extends Controller
      * @param string $id
      * @return mixed
      */
-    public function actionDelete($id)
+    public function actionDelete(string $id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+
+        Yii::$app->getAuthManager()->remove($model->item);
+        Yii::$app->session->setFlash('success','Item has been removed.');
 
         return $this->redirect(['index']);
     }
@@ -136,15 +143,24 @@ class AuthItemController extends Controller
      * @return AuthItem the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel(string $id): AuthItem
     {
-        if (($model = AuthItem::findOne($id)) !== null) {
-            return $model;
-        } else {
+        $auth = Yii::$app->getAuthManager();
+        $item = $this->type === Item::TYPE_ROLE ? $auth->getRole($id) : $auth->getPermission($id);
+
+        if (empty($item)) {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
-    }
 
+        return new AuthItem($item);
+    }
+    /**
+     * @inheritdoc
+     */
+    public function getViewPath(): string
+    {
+        return $this->module->getViewPath() . DIRECTORY_SEPARATOR . 'auth-item';
+    }
     /**
      * @return array
      */
