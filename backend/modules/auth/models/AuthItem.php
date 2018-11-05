@@ -6,24 +6,20 @@ use Yii;
 use yii\base\Model;
 use yii\rbac\Item;
 use yii\helpers\Json;
+
+
+
 /**
- * This is the model class for table "auth_item".
+ * Class AuthItemModel
  *
  * @property string $name
- * @property integer $type
+ * @property int $type
  * @property string $description
- * @property string $rule_name
- * @property resource $data
- * @property integer $created_at
- * @property integer $updated_at
- *
- * @property AuthAssignment[] $authAssignments
- * @property AuthRule $ruleName
- * @property AuthItemChild[] $authItemChildren
- * @property AuthItemChild[] $authItemChildren0
- * @property AuthItem[] $children
- * @property AuthItem[] $parents
+ * @property string $ruleName
+ * @property string $data
+ * @property Item $item
  */
+
 class AuthItem extends Model
 {
     /**
@@ -82,15 +78,37 @@ class AuthItem extends Model
      */
     public function rules()
     {
+        ///, 'ruleName'
         return [
+            [['name', 'description', 'data'], 'trim'],
             [['name', 'type'], 'required'],
+            ['name', 'validateName', 'when' => function () {
+                return $this->getIsNewRecord() || ($this->_item->name != $this->name);
+            }],
             [['type'], 'integer'],
             [['description', 'data'], 'string'],
             [['name', 'ruleName'], 'string', 'max' => 64],
-            [['ruleName'], 'exist', 'skipOnError' => true, 'targetClass' => AuthRule::className(), 'targetAttribute' => ['ruleName' => 'name']],
+
         ];
     }
 
+    /**
+     * Validate item name
+     */
+    public function validateName()
+    {   
+        $value = $this->name;
+
+        if ($this->manager->getRole($value) !== null || $this->manager->getPermission($value) !== null) {
+            $message = '{attribute} "{value}" has already been taken.';
+
+            $params = [
+                'attribute' => $this->getAttributeLabel('name'),
+                'value' => $value,
+            ];
+            $this->addError('name', Yii::$app->getI18n()->format($message, $params, Yii::$app->language));
+        }
+    }
     /**
      * @inheritdoc
      */
@@ -173,7 +191,8 @@ class AuthItem extends Model
     public function save(): bool
     {
        
-        
+        if ($this->validate()) {
+
             if ($this->_item === null) {
                 if ($this->type == Item::TYPE_ROLE) {
                     $this->_item = $this->manager->createRole($this->name);
@@ -199,8 +218,7 @@ class AuthItem extends Model
             }
 
             return true;
-        
-
+        }
         return false;
     }
 

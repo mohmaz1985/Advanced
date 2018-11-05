@@ -6,9 +6,12 @@ use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use \yii\filters\AccessControl;
 use backend\modules\auth\models\AuthItem;
 use backend\modules\auth\models\AuthItemSearch;
 use yii\rbac\Item;
+use yii\widgets\ActiveForm;
+use yii\web\Response;
 
 /**
  * AuthItemController implements the CRUD actions for AuthItem model.
@@ -38,6 +41,16 @@ class AuthItemController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+            'class' => AccessControl::className(),
+            'only' => ['index','view','create', 'update','delete'],
+            'rules' => [
+                [
+                    'allow' => true,
+                    'roles' => ['@'],
+                ],
+              ]
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -86,7 +99,7 @@ class AuthItemController extends Controller
     {
         $model = new AuthItem();
         $model->type = $this->type;
-
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
             Yii::$app->session->setFlash('success',  'Item has been saved.');
@@ -134,6 +147,20 @@ class AuthItemController extends Controller
         Yii::$app->session->setFlash('success','Item has been removed.');
 
         return $this->redirect(['index']);
+    }
+
+    // ajax validation
+    public function actionValidate(string $id=null)
+    {
+        echo $id;
+        die();
+        
+        $model = $id===null ? new AuthItem : AuthItem::findModel($id);
+
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
     }
 
     /**

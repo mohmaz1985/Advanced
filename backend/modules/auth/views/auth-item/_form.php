@@ -10,7 +10,18 @@ use yii\widgets\ActiveForm;
 
 <div class="auth-item-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php 
+
+    //Check Unique When Update
+    $validationUrl = ['auth-item/validate'];
+    /*if (!$model->isNewRecord)
+        $validationUrl['id'] = $model->id;*/
+
+    $form = ActiveForm::begin([
+        'id' => $model->formName(),
+        'enableAjaxValidation' => true,
+        'validationUrl' => $validationUrl
+    ]); ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
